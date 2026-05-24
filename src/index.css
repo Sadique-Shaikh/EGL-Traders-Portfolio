@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8C97A;
+  --color-gold-dim: #8a6f2e;
+  --color-dark: #0A0A0A;
+  --color-dark-2: #111111;
+  --color-dark-3: #1a1a1a;
+  --color-dark-4: #222222;
+  --color-muted: #9A8E7A;
+}
+
+.nm-btn-gold {
+  background: linear-gradient(135deg, #B8860B, #D4A017, #F5C842, #B8860B);
+  background-size: 200% 200%;
+  animation: goldSheen 4s ease infinite;
+  border-radius: 50px;
+  box-shadow: 4px 4px 12px #050400, -2px -2px 6px #1e1900;
+  border: none;
+  color: #050400;
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 11px 28px;
+  transition: all 0.2s ease;
+}
+
+/* Optional hover effect (not in original, but nice to add) */
+.nm-btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 6px 6px 14px #050400, -3px -3px 8px #1e1900;
+}
+
+@keyframes goldSheen {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.nm-card {
+    background: #131000;
+    border-radius: 16px;
+    box-shadow: 6px 6px 14px #050400, -4px -4px 10px #1e1900;
+    border: 0.5px solid rgba(212,160,23,0.12);
+}
