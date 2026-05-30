@@ -16,5 +16,29 @@ The React Compiler is not enabled on this template because of its impact on dev 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 
-#46452D
-#6E4E25
+<!-- set steps -->
+echo "# EGL-Traders-Portfolio" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Sadique-Shaikh/EGL-Traders-Portfolio.git
+git push -u origin main
+
+
+<!-- ======= -->
+
+// Add to THEMES object in ThemeContext.jsx
+newTheme: {
+  name: 'New Theme Name',
+  colors: {
+    bgPrimary: '#yourColor',
+    bgSecondary: '#yourColor',
+    // ... all color properties
+    goldGradient: 'linear-gradient(...)',
+  },
+  fonts: {
+    heading: "'Your Font', serif",
+    body: "'Your Font', sans-serif",
+  },
+},

@@ -1,126 +1,121 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { motion } from 'framer-motion'
+// src/components/TrustBar.jsx
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
+import './TrustBar.css';
 
-const TrustBar = () => {
-    const shadowDark = '#000000'
-    const shadowLight = '#1c1c1c'
-    const goldColor = '#d4b44c'
+const useCountUp = (end, duration = 2) => {
+    const [count, setCount] = useState(0);
+    const elementRef = useRef(null);
+    // Increase the margin to trigger animation earlier (before it comes into view)
+    const isInView = useInView(elementRef, { 
+        once: true, 
+        margin: '-100px 0px -100px 0px', // Trigger when element is 100px from viewport
+        amount: 0.3 // Trigger when 30% of element is visible
+    });
+    const [hasAnimated, setHasAnimated] = useState(false);
 
-    // Stats data
-    const stats = [
-        { label: 'Product Categories', value: 8, suffix: '+' },
-        { label: 'Global Reach', value: 0, suffix: '' }, // static text
-        { label: 'Custom Sourcing', value: 100, suffix: '%' },
-    ]
-
-    // For static "Global Reach" – no counter needed
-    const [counts, setCounts] = useState([0, 0, 0])
-    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 })
 
     useEffect(() => {
-        if (inView) {
-            const duration = 1500 // ms
-            const steps = 60
-            const stepTime = duration / steps
+        if (isInView && !hasAnimated && end > 0) {
+            setHasAnimated(true);
+            let startTime = null;
 
-            const targets = stats.map(s => s.value)
-            const increments = targets.map(t => t / steps)
+            const animate = (currentTime) => {
+                if (startTime === null) startTime = currentTime;
+                const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                setCount(Math.floor(eased * end));
+                if (progress < 1) requestAnimationFrame(animate);
+            };
 
-            let currentStep = 0
-            const interval = setInterval(() => {
-                if (currentStep < steps) {
-                    setCounts(prev => prev.map((p, i) => {
-                        let next = p + increments[i]
-                        if (next > targets[i]) next = targets[i]
-                        return Math.floor(next)
-                    }))
-                    currentStep++
-                } else {
-                    clearInterval(interval)
-                    setCounts(targets.map(v => Math.floor(v)))
-                }
-            }, stepTime)
-
-            return () => clearInterval(interval)
+            requestAnimationFrame(animate);
         }
-    }, [inView, stats])
+    }, [isInView, end, duration, hasAnimated]);
+
+    return { count, elementRef, isInView };
+};
+
+const TrustItem = ({ value, label, suffix, badgeIcon, badgeText, duration = 2 }) => {
+    const { count, elementRef, isInView } = useCountUp(value, duration);
+    const displayValue = value === 0 ? 'Zero' : `${isInView ? count : 0}${suffix}`;
 
     return (
-        <div
-            ref={ref}
-            className="w-full py-3 md:py-4"
-            style={{
-                background: '#0a0a0a',
-                borderTop: '1px solid rgba(230,184,0,0.15)',
-                borderBottom: '1px solid rgba(230,184,0,0.15)',
-                boxShadow: `inset 0 2px 4px ${shadowDark}, inset 0 -1px 2px ${shadowLight}`,
-            }}
+        <motion.div
+            className="trust-item"
+            ref={elementRef}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
         >
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
-                <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-xs md:text-sm tracking-wider">
-                    {stats.map((stat, idx) => (
-                        <React.Fragment key={idx}>
-                            <div className="flex items-center gap-2">
-                                {stat.label === 'Global Reach' ? (
-                                    // Gold SVG globe + text
-                                    <div className="flex items-center gap-2">
-                                        <svg 
-                                            width="18" 
-                                            height="18" 
-                                            viewBox="0 0 24 24" 
-                                            fill="none" 
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            style={{ filter: `drop-shadow(1px 1px 0 ${shadowDark})` }}
-                                        >
-                                            <circle cx="12" cy="12" r="10" stroke={goldColor} strokeWidth="1.5" fill="none"/>
-                                            <ellipse cx="12" cy="12" rx="4" ry="10" stroke={goldColor} strokeWidth="1.5" fill="none"/>
-                                            <line x1="2" y1="12" x2="22" y2="12" stroke={goldColor} strokeWidth="1.5" strokeDasharray="3 3"/>
-                                            <line x1="12" y1="2" x2="12" y2="22" stroke={goldColor} strokeWidth="1.5"/>
-                                        </svg>
-                                        <span 
-                                            className="font-bold text-base md:text-lg"
-                                            style={{
-                                                fontFamily: "'Cinzel', serif",
-                                                color: goldColor,
-                                                textShadow: `1px 1px 0 ${shadowDark}`,
-                                            }}
-                                        >
-                                            Global Reach
-                                        </span>
-                                    </div>
-                                ) : (
-                                    <>
-                                        <span
-                                            className="font-bold text-base md:text-lg"
-                                            style={{
-                                                fontFamily: "'Cinzel', serif",
-                                                color: goldColor,
-                                                textShadow: `1px 1px 0 ${shadowDark}`,
-                                            }}
-                                        >
-                                            {`${counts[idx]}${stat.suffix}`}
-                                        </span>
-                                        {stat.label !== 'Global Reach' && (
-                                            <span className="text-[10px] text-white/50">•</span>
-                                        )}
-                                    </>
-                                )}
-                            </div>
-                            {idx < stats.length - 1 && (
-                                <span
-                                    className="text-gold/40 text-lg font-thin hidden md:inline"
-                                    style={{ fontFamily: "'Jost', sans-serif" }}
-                                >
-                                    |
-                                </span>
-                            )}
-                        </React.Fragment>
-                    ))}
-                </div>
+            <div className="trust-badge">
+                <i className={`ti ${badgeIcon}`} aria-hidden="true" />
+                {badgeText}
             </div>
-        </div>
-    )
-}
 
-export default TrustBar
+            <span className="trust-num">{displayValue}</span>
+            <span className="trust-underline" />
+            <span className="trust-lbl">{label}</span>
+        </motion.div>
+    );
+};
+
+const TrustBar = () => {
+    const { colors, fonts } = useTheme(); // Get theme values
+    
+    // Apply font family from theme to the component
+    const trustBarStyle = {
+        fontFamily: fonts?.body || "'Inter', sans-serif"
+    };
+
+    const trustItems = [
+        {
+            value: 25,
+            label: 'Countries Served',
+            suffix: '+',
+            badgeIcon: 'ti-world',
+            badgeText: 'Global',
+            duration: 2,
+        },
+        {
+            value: 10,
+            label: 'Years of Trade',
+            suffix: '+',
+            badgeIcon: 'ti-calendar-check',
+            badgeText: 'Proven',
+            duration: 2,
+        },
+        {
+            value: 500,
+            label: 'Orders Shipped',
+            suffix: '+',
+            badgeIcon: 'ti-ship',
+            badgeText: 'Delivered',
+            duration: 2.5,
+        },
+        {
+            value: 0,
+            label: 'Disputes Ever',
+            suffix: '',
+            badgeIcon: 'ti-shield-check',
+            badgeText: 'Trusted',
+            duration: 1.5,
+        },
+    ];
+
+    return (
+        <motion.div
+            className="trust-bar"
+            style={trustBarStyle}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+        >
+            {trustItems.map((item) => (
+                <TrustItem key={item.label} {...item} />
+            ))}
+        </motion.div>
+    );
+};
+
+export default TrustBar;

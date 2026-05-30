@@ -1,0 +1,114 @@
+/* src/components/WhyChooseUs.css */
+
+.why-section {
+    background: #0F2D1F;
+    padding: 64px 48px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.why-header {
+    max-width: 1280px;
+    margin: 0 auto 40px;
+}
+
+.why-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #C8974A;
+    margin-bottom: 10px;
+}
+
+.why-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.why-heading-rule {
+    width: 40px;
+    height: 3px;
+    background: #C8974A;
+    border-radius: 2px;
+}
+
+/* ── Grid ───────────────────────────────────────────────────────────────── */
+
+.why-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+
+.why-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+    cursor: default;
+}
+
+.why-card:hover {
+    background: rgba(200, 151, 74, 0.08);
+    border-color: rgba(200, 151, 74, 0.3);
+}
+
+/* ── Icon ───────────────────────────────────────────────────────────────── */
+
+.why-icon {
+    font-size: 24px;
+    color: #C8974A;
+    display: block;
+    margin-bottom: 14px;
+    transition: transform 0.25s ease;
+}
+
+.why-card:hover .why-icon {
+    transform: scale(1.1);
+}
+
+/* ── Text ───────────────────────────────────────────────────────────────── */
+
+.why-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.why-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #8DB09A;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px) {
+    .why-section {
+        padding: 48px 20px;
+    }
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+    .why-heading {
+        font-size: 28px;
+    }
+}

@@ -1,0 +1,156 @@
+/* src/components/ProductsSection.css */
+
+.products-section {
+    padding: 64px 48px;
+    background: #ffffff;
+    max-width: 1280px;
+    margin: 0 auto;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.products-header {
+    margin-bottom: 40px;
+}
+
+.products-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #C8974A;
+    margin-bottom: 10px;
+}
+
+.products-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.products-heading-accent {
+    color: #C8974A;
+    font-style: italic;
+}
+
+.products-heading-rule {
+    width: 40px;
+    height: 3px;
+    background: #C8974A;
+    border-radius: 2px;
+}
+
+/* ── Grid ───────────────────────────────────────────────────────────────── */
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+
+.product-card {
+    border: 1px solid #e8eae8;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    cursor: default;
+}
+
+.product-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    border-color: #C8974A;
+}
+
+/* ── Card image / colored banner ─────────────────────────────────────────── */
+
+.product-card-image {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.25s ease;
+}
+
+.product-card-image .ti {
+    font-size: 36px;
+    color: rgba(200, 151, 74, 0.55);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.product-card:hover .product-card-image .ti {
+    color: rgba(200, 151, 74, 0.85);
+    transform: scale(1.08);
+}
+
+/* Background colors matching each card from the screenshot */
+.bg-dark-green   { background: #0F2D1F; }
+.bg-medium-green { background: #1a3d20; }
+.bg-dark-brown   { background: #3d2200; }
+.bg-deep-teal    { background: #0d2b35; }
+.bg-dark-purple  { background: #2d0f3d; }
+.bg-forest       { background: #0f3027; }
+
+/* ── Card body ──────────────────────────────────────────────────────────── */
+
+.product-card-body {
+    padding: 18px 20px 20px;
+    background: #ffffff;
+}
+
+.product-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.product-desc {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #5a6a60;
+    margin-bottom: 12px;
+}
+
+/* ── Tags ───────────────────────────────────────────────────────────────── */
+
+.product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.product-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: #3d5a48;
+    background: #f0f5f2;
+    border: 1px solid #dce8e0;
+    border-radius: 20px;
+    padding: 3px 10px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px) {
+    .products-section {
+        padding: 48px 20px;
+    }
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    .products-heading {
+        font-size: 28px;
+    }
+}

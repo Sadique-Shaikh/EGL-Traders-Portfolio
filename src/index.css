@@ -1,52 +1,155 @@
 @import "tailwindcss";
 
-@theme {
-  --color-gold: #C9A84C;
-  --color-gold-light: #E8C97A;
-  --color-gold-dim: #8a6f2e;
-  --color-dark: #0A0A0A;
-  --color-dark-2: #111111;
-  --color-dark-3: #1a1a1a;
-  --color-dark-4: #222222;
-  --color-muted: #9A8E7A;
+/* ============================================
+   SCROLL BEHAVIOR
+   ============================================ */
+html {
+  scroll-behavior: smooth;
 }
 
-.nm-btn-gold {
-  background: linear-gradient(135deg, #B8860B, #D4A017, #F5C842, #B8860B);
-  background-size: 200% 200%;
-  animation: goldSheen 4s ease infinite;
-  border-radius: 50px;
-  box-shadow: 4px 4px 12px #050400, -2px -2px 6px #1e1900;
-  border: none;
-  color: #050400;
-  font-family: 'Jost', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 11px 28px;
-  transition: all 0.2s ease;
+/* Scroll offset for fixed navbar */
+section {
+  scroll-margin-top: 80px;
 }
 
-/* Optional hover effect (not in original, but nice to add) */
-.nm-btn-gold:hover {
-  transform: translateY(-1px);
-  box-shadow: 6px 6px 14px #050400, -3px -3px 8px #1e1900;
-}
-
-@keyframes goldSheen {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+/* Mobile touch improvements */
+@media (max-width: 768px) {
+  button,
+  [onClick] {
+    cursor: pointer;
+    touch-action: manipulation;
   }
 }
 
-.nm-card {
-    background: #131000;
-    border-radius: 16px;
-    box-shadow: 6px 6px 14px #050400, -4px -4px 10px #1e1900;
-    border: 0.5px solid rgba(212,160,23,0.12);
+/* Smooth theme transitions - EXCLUDE z-index from transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Base body styles using theme variables */
+body {
+  background-color: var(--color-bgPrimary);
+  color: var(--color-textPrimary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Fallback CSS variables (overridden by ThemeProvider) */
+:root {
+  --color-bgPrimary: #0A0A0A;
+  --color-bgSecondary: #111111;
+  --color-bgCard: #1a1a1a;
+  --color-textPrimary: #ffffff;
+  --color-textSecondary: #b0b0b0;
+  --color-textLight: #888888;
+  --color-accent: #D4A017;
+  --color-accentLight: #F5C842;
+  --color-accentDark: #B8860B;
+  --color-borderLight: #2a2a2a;
+  --color-borderDark: #1c1c1c;
+  --color-shadowDark: #050400;
+  --color-shadowLight: #1e1900;
+  --color-success: #25D366;
+  --color-goldGradient: linear-gradient(135deg, #B8860B, #D4A017, #F5C842, #B8860B);
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+/* ============================================
+   SCROLLBAR HIDING (Optional)
+   ============================================ */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   BOX SIZING RESET
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   THEME SWITCHER FIXES
+   ============================================ */
+
+/* Ensure ThemeSwitcher container doesn't clip dropdown */
+.nav-container,
+.nav-container > div,
+.relative {
+  overflow: visible !important;
+}
+
+/* Give ThemeSwitcher highest z-index */
+.theme-switcher-wrapper {
+  position: relative;
+  z-index: 9999;
+}
+
+/* Theme dropdown styling - ensure it appears above everything */
+.theme-dropdown {
+  position: absolute;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+/* Prevent navbar from clipping dropdown */
+[class*="overflow-hidden"] {
+  overflow: visible !important;
+}
+
+/* Ensure mobile menu doesn't block clicks on ThemeSwitcher */
+.md\\:hidden {
+  pointer-events: auto;
+}
+
+/* Fix for fixed positioning conflicts */
+.fixed {
+  z-index: 40;
+}
+
+/* Make sure ThemeSwitcher button is always clickable */
+button[title="Change Theme"] {
+  position: relative;
+  z-index: 10000;
+  pointer-events: auto !important;
+}
+
+/* Prevent any parent from creating overflow clipping */
+main, 
+div[class*="App"],
+div[class*="container"] {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+  /* Ensure dropdown is fully visible on mobile */
+  .theme-dropdown {
+    position: fixed !important;
+    top: auto !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 280px !important;
+    margin-top: 8px !important;
+  }
+  
+  /* Adjust mobile menu to not cover ThemeSwitcher */
+  .mobile-menu-overlay {
+    top: 70px !important;
+    z-index: 999 !important;
+  }
 }

@@ -1,0 +1,12 @@
+/* Optional: Add this to your global CSS for image hover effect */
+.about-image-container {
+    overflow: hidden;
+}
+
+.about-image-container img {
+    transition: transform 0.5s ease;
+}
+
+.about-image-container:hover img {
+    transform: scale(1.05);
+}

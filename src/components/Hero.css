@@ -1,0 +1,418 @@
+/* Hero.css - Updated with proper fallbacks */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap');
+
+.hero-section {
+    background: var(--color-bgPrimary, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.hero-section {
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/src/assets/herosection.PNG');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+}
+
+.hero-section.bg-loaded::before {
+    background-image: url('https://www.ankeri.net/_next/image?url=https%3A%2F%2Fplatform.optise.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcms-media%2Fprojects%2Fankeri%2Fmedia%2Fankeri--atmospheric--hero-background.jpg&w=1920&q=75');
+    filter: blur(0);
+    opacity: 0.15;
+}
+
+/* Ensure2ll content stays above background */
+.hero-inner,
+.trust-bar {
+    position: relative;
+    z-index: 1;
+}
+
+/* Dot pattern background */
+.hero-inner {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    padding: 80px 64px 60px;
+    position: relative;
+    gap: 40px;
+}
+
+.hero-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* background-image: radial-gradient(circle, var(--color-accent, rgba(200, 151, 74, 0.28)) 1px, transparent 1px); */
+    background-size: 26px 26px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.28;
+}
+
+/* Soft glow top-right */
+.hero-inner::after {
+    content: '';
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    /* background: radial-gradient(circle, var(--color-bgSecondary, #EAF5EF) 0%, transparent 70%); */
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-left {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 420px;
+}
+
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--color-bgSecondary, #EAF5EF);
+    border: 1px solid var(--color-accentGreen, rgba(29, 158, 117, 0.25));
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 11px;
+    color: var(--color-accentGreen, #0F6E56);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    font-family: var(--font-body, 'DM Sans'), sans-serif;
+    margin-bottom: 24px;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accentGreen, #1D9E75);
+    flex-shrink: 0;
+}
+
+.hero-headline {
+    font-family: var(--font-heading, 'Playfair Display'), serif;
+    font-size: clamp(34px, 3.8vw, 48px);
+    font-weight: 700;
+    color: var(--color-textPrimary, #0F2D1F);
+    line-height: 1.18;
+    margin-bottom: 20px;
+}
+
+.hero-headline span {
+    color: var(--color-accent, #C8974A);
+}
+
+.hero-desc {
+    font-family: var(--font-body, 'DM Sans'), sans-serif;
+    font-size: 15px;
+    color: var(--color-textSecondary, #5A7A66);
+    line-height: 1.85;
+    margin-bottom: 36px;
+    max-width: 420px;
+    font-weight: 300;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-whatsapp {
+    background: var(--color-success, #25D366);
+    color: #ffffff;
+    font-family: var(--font-body, 'DM Sans'), sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 13px 26px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+    transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.btn-whatsapp:hover {
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+}
+
+.btn-products {
+    background: transparent;
+    color: var(--color-textPrimary, #0F2D1F);
+    font-family: var(--font-body, 'DM Sans'), sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 13px 26px;
+    border-radius: 8px;
+    border: 1.5px solid var(--color-textPrimary, #0F2D1F);
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-products:hover {
+    background: var(--color-textPrimary, #0F2D1F);
+    color: var(--color-bgPrimary, #ffffff);
+}
+
+/* Floating image */
+.float-image-wrap {
+    position: relative;
+    width: 280px;
+    height: 340px;
+}
+
+.float-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: var(--color-darkGradient, linear-gradient(145deg, #1D4A30 0%, #0F2D1F 55%, #0a1810 100%));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 64px var(--color-shadowDark, rgba(15, 45, 31, 0.28));
+}
+
+/* shimmer overlay */
+.float-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-accent, rgba(200, 151, 74, 0.1)) 0%, transparent 55%);
+    z-index: 1;
+}
+
+.float-image-icon {
+    font-size: 88px;
+    color: var(--color-accent, rgba(200, 151, 74, 0.22));
+    position: relative;
+    z-index: 2;
+}
+
+.float-image-label {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: var(--color-accent, rgba(200, 151, 74, 0.55));
+    letter-spacing: 2.5px;
+    white-space: nowrap;
+    font-family: var(--font-body, 'DM Sans'), sans-serif;
+    z-index: 3;
+}
+
+
+/* Theme Switcher Button */
+.theme-switcher {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+}
+
+.theme-toggle-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bgCard, #ffffff);
+    border: 1px solid var(--color-borderLight, #e0e0e0);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--color-shadowDark, rgba(0, 0, 0, 0.1));
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: var(--color-textPrimary, #1a1a1a);
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px var(--color-shadowDark, rgba(0, 0, 0, 0.15));
+}
+
+.theme-menu {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: var(--color-bgCard, #ffffff);
+    border-radius: 12px;
+    padding: 12px;
+    min-width: 180px;
+    box-shadow: 0 8px 24px var(--color-shadowDark, rgba(0, 0, 0, 0.15));
+    border: 1px solid var(--color-borderLight, #e0e0e0);
+    animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.theme-option {
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: var(--font-body, 'DM Sans'), sans-serif;
+    font-size: 13px;
+    color: var(--color-textPrimary, #1a1a1a);
+    transition: background 0.2s;
+}
+
+.theme-option:hover {
+    background: var(--color-bgSecondary, #f8f8f8);
+}
+
+.theme-option.active {
+    background: var(--color-accent, #C8974A);
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 40px;
+        text-align: center;
+    } */
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 40px;
+        text-align: center;
+        background-image: url('https://inductusglobal.com/wp-content/uploads/2025/10/Global-Banner9.2-scaled.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .hero-inner::before {
+        /* Override the dot pattern — use a dark overlay instead */
+        background-image: none;
+        background: rgba(0, 0, 0, 0.52);
+        opacity: 1;
+        z-index: 0;
+    }
+
+    /* Make text white so it's readable on the dark photo */
+    .hero-headline {
+        color: #ffffff;
+    }
+
+    .hero-desc {
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    .hero-right {
+        display: none;
+    }
+
+    .badge-pill {
+        margin: 0 auto 20px;
+    }
+
+    .hero-desc {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+}
+
+
+/* StatBadge Styles */
+.stat-badge {
+    z-index: 20;
+}
+
+.stat-badge-content {
+    border-radius: 12px;
+    padding: 10px 16px;
+    min-width: 110px;
+}
+
+.stat-badge-light .stat-badge-content {
+    background: var(--color-bgCard, #ffffff);
+    box-shadow: 0 8px 28px var(--color-shadowDark, rgba(15, 45, 31, 0.14));
+    border-left: 3px solid var(--color-accent, #C8974A);
+}
+
+.stat-badge-dark .stat-badge-content {
+    background: var(--color-bgDark, #0F2D1F);
+    box-shadow: 0 8px 28px var(--color-shadowDark, rgba(0, 0, 0, 0.25));
+    border-left: none;
+}
+
+.stat-badge-value {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: var(--font-heading, 'Playfair Display'), serif;
+    line-height: 1;
+}
+
+.stat-badge-light .stat-badge-value {
+    color: var(--color-textPrimary, #0F2D1F);
+}
+
+.stat-badge-dark .stat-badge-value {
+    color: var(--color-accent, #C8974A);
+}
+
+.stat-badge-label {
+    font-size: 11px;
+    margin-top: 3px;
+    font-family: var(--font-body, 'DM Sans'), sans-serif;
+}
+
+.stat-badge-light .stat-badge-label {
+    color: var(--color-textSecondary, #888888);
+}
+
+.stat-badge-dark .stat-badge-label {
+    color: var(--color-textLight, #8DB09A);
+}
