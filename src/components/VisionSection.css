@@ -1,0 +1,135 @@
+/* src/components/VisionSection.css */
+
+.vision-section {
+    background: #0F2D1F;
+    padding: 80px 48px;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Subtle radial glow behind the content ───────────────────────────────── */
+.vision-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse at center, rgba(200, 151, 74, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ── Inner container ─────────────────────────────────────────────────────── */
+
+.vision-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Decorative large quote mark ─────────────────────────────────────────── */
+
+.vision-quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    line-height: 0.6;
+    color: rgba(200, 151, 74, 0.15);
+    margin-bottom: 24px;
+    display: block;
+    user-select: none;
+}
+
+/* ── Eyebrow ─────────────────────────────────────────────────────────────── */
+
+.vision-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C8974A;
+    margin-bottom: 14px;
+}
+
+/* ── Heading ─────────────────────────────────────────────────────────────── */
+
+.vision-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.vision-accent {
+    color: #C8974A;
+    font-style: italic;
+}
+
+/* ── Body text ───────────────────────────────────────────────────────────── */
+
+.vision-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #8DB09A;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* ── Three pillars ───────────────────────────────────────────────────────── */
+
+.vision-pillars {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.vision-pillar {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(200, 151, 74, 0.1);
+    border: 1px solid rgba(200, 151, 74, 0.25);
+    border-radius: 24px;
+    padding: 9px 18px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+    cursor: default;
+}
+
+.vision-pillar:hover {
+    background: rgba(200, 151, 74, 0.18);
+    border-color: rgba(200, 151, 74, 0.5);
+}
+
+.vision-pillar .ti {
+    font-size: 16px;
+    color: #C8974A;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+    .vision-section {
+        padding: 60px 20px;
+    }
+
+    .vision-heading {
+        font-size: 28px;
+    }
+
+    .vision-quote-mark {
+        font-size: 80px;
+    }
+
+    .vision-body {
+        font-size: 14px;
+    }
+}

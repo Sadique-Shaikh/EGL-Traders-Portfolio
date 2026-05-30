@@ -20,14 +20,14 @@
     background-image: url('/src/assets/herosection.PNG');
     background-size: cover;
     background-position: center;
-    filter: blur(5px);
+    filter: blur(2px);
     opacity: 1;
     transition: opacity 0.5s ease;
     z-index: 0;
 }
 
 .hero-section.bg-loaded::before {
-    background-image: url('https://www.ankeri.net/_next/image?url=https%3A%2F%2Fplatform.optise.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcms-media%2Fprojects%2Fankeri%2Fmedia%2Fankeri--atmospheric--hero-background.jpg&w=1920&q=75');
+    /* background-image: url('https://www.ankeri.net/_next/image?url=https%3A%2F%2Fplatform.optise.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcms-media%2Fprojects%2Fankeri%2Fmedia%2Fankeri--atmospheric--hero-background.jpg&w=1920&q=75'); */
     filter: blur(0);
     opacity: 0.15;
 }
@@ -322,7 +322,7 @@
         grid-template-columns: 1fr;
         padding: 60px 24px 40px;
         text-align: center;
-        background-image: url('https://inductusglobal.com/wp-content/uploads/2025/10/Global-Banner9.2-scaled.jpg');
+        background-image: url('/src/assets/herosection.PNG');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

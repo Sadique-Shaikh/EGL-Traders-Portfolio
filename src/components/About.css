@@ -1,12 +1,157 @@
-/* Optional: Add this to your global CSS for image hover effect */
-.about-image-container {
-    overflow: hidden;
+/* src/components/AboutSection.css */
+
+.about-section {
+    padding: 64px 48px;
+    background: #ffffff;
+    max-width: 1280px;
+    margin: 0 auto;
+    font-family: 'DM Sans', sans-serif;
 }
 
-.about-image-container img {
-    transition: transform 0.5s ease;
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.about-header {
+    margin-bottom: 40px;
 }
 
-.about-image-container:hover img {
-    transform: scale(1.05);
+.about-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #C8974A;
+    margin-bottom: 10px;
+}
+
+.about-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.about-heading-accent {
+    color: #C8974A;
+    font-style: italic;
+}
+
+.about-heading-rule {
+    width: 40px;
+    height: 3px;
+    background: #C8974A;
+    border-radius: 2px;
+}
+
+/* ── Two-column body ─────────────────────────────────────────────────────── */
+
+.about-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+/* ── Left: image card ────────────────────────────────────────────────────── */
+
+.about-image-wrap {
+    position: relative;
+}
+
+.about-image-card {
+    /* background: #0F2D1F; */
+    background-image: url('/src/assets/adrian-sulyok-sczNLg6rrhQ-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-image-icon {
+    font-size: 72px;
+    color: rgba(200, 151, 74, 0.3);
+}
+
+/* ── Stats floating card ─────────────────────────────────────────────────── */
+
+.about-stats-card {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+    min-width: 200px;
+    border: 1px solid #f0f0f0;
+}
+
+.about-stat {
+    text-align: center;
+}
+
+.about-stat-val {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #C8974A;
+    line-height: 1;
+}
+
+.about-stat-lbl {
+    display: block;
+    font-size: 11px;
+    color: #8a9a90;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* ── Right: text ─────────────────────────────────────────────────────────── */
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-text p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #3d4d45;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+    .about-body {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .about-stats-card {
+        right: 0;
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 580px) {
+    .about-section {
+        padding: 48px 20px;
+    }
+
+    .about-heading {
+        font-size: 28px;
+    }
+
+    .about-image-card {
+        height: 240px;
+    }
 }

@@ -171,7 +171,7 @@ const Hero = () => {
 
                                     {/* ── REPLACE THIS DIV WITH YOUR REAL IMAGE ── */}
                                     <img
-                                        src="https://inductusglobal.com/wp-content/uploads/2025/10/Global-Banner9.2-scaled.jpg"
+                                        src="src\assets\istockphoto-1339057752-612x612.jpg"
                                         alt="EGL Traders cargo shipping"
                                         style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px' }}
                                     />
