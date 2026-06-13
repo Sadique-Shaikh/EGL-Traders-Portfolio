@@ -117,6 +117,7 @@ export const THEMES = {
   emeraldGreen: {
     name: 'Emerald Green',
     colors: {
+      
       bgPrimary: '#FFFFFF',
       bgSecondary: '#FAFDF9',
       bgCard: '#FFFFFF',

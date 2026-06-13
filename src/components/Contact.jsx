@@ -1,6 +1,7 @@
 // src/components/CTASection.jsx
 import React from 'react';
 import './Contact.css';
+import logo from './../assets/new Egl logo.PNG';
 
 const ContactCTA = () => {
     return (
@@ -36,7 +37,14 @@ const ContactCTA = () => {
             <footer className="site-footer">
                 <div className="footer-inner">
                     <div className="footer-brand">
-                        <div className="footer-logo-circle">EGL</div>
+                        <div className="footer-logo-circle">
+                            {/* EGL */}
+                            <img
+                                src={logo}
+                                alt="EGL Logo"
+                                className="h-8 sm:h-10 w-auto object-contain"
+                            />
+                        </div>
                         <span className="footer-logo-name">EGL TRADERS</span>
                     </div>
                     <p className="footer-copy">© 2025 EGL Traders. All rights reserved.</p>

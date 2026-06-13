@@ -22,7 +22,7 @@ const services = [
             'Bulk orders at competitive rates, direct from manufacturers. No middlemen, better margins.',
     },
     {
-        icon: 'ti-handshake',
+        icon: 'ti-affiliate',
         title: 'B2B Partnership',
         description:
             'Long-term trade agreements tailored to your business needs with dedicated account management.',
