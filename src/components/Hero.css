@@ -4,7 +4,7 @@
 /* ─── Section ────────────────────────────────────────────────────────────────── */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 65vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -376,23 +376,176 @@
     .hero-inner {
         grid-template-columns: 1fr;
         padding: 60px 24px 40px;
-        text-align: center;
+        text-align: left; /* Changed from center to left */
     }
 
     .hero-gradient {
         background: linear-gradient(
             to bottom,
-            rgba(8, 20, 12, 0.9) 0%,
-            rgba(8, 20, 12, 0.65) 55%,
-            rgba(8, 20, 12, 0.28) 100%
+            rgba(8, 20, 12, 0.92) 0%,
+            rgba(8, 20, 12, 0.78) 55%,
+            rgba(8, 20, 12, 0.4) 100%
         );
     }
 
-    .hero-right   { display: none; }
-    .hero-arrow   { display: none; }
-    .badge-pill   { margin: 0 auto 20px; }
-    .hero-desc    { margin-left: auto; margin-right: auto; }
-    .hero-btns    { justify-content: center; }
-    .hero-counter { left: 24px; }
-    .hero-accent-line { margin: 0 auto 14px; }
+    .hero-right { 
+        display: none; 
+    }
+    
+    .hero-arrow { 
+        display: none; 
+    }
+    
+    /* Keep content left-aligned on mobile */
+    .hero-left {
+        text-align: left;
+    }
+    
+    /* Accent line stays on left - FIXED */
+    .hero-accent-line { 
+        margin: 0 0 14px 0;
+    }
+    
+    /* Badge pill left aligned (optional - can be inline) */
+    .badge-pill { 
+        margin: 0 0 20px 0;
+        display: inline-flex;
+    }
+    
+    /* Eyebrow left aligned */
+    .hero-eyebrow {
+        text-align: left;
+    }
+    
+    /* Headline left aligned */
+    .hero-headline {
+        text-align: left;
+    }
+    
+    /* Description left aligned with proper width */
+    .hero-desc { 
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
+        max-width: 100%;
+    }
+    
+    /* Buttons left aligned */
+    .hero-btns { 
+        justify-content: flex-start;
+    }
+    
+    /* Counter stays on left */
+    .hero-counter { 
+        left: 24px;
+        bottom: 20px;
+    }
+    
+    /* Dots positioning */
+    .hero-dots {
+        bottom: 24px;
+    }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+    .hero-inner {
+        padding: 50px 20px 30px;
+    }
+    
+    .hero-headline {
+        font-size: 32px;
+    }
+    
+    .hero-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 28px;
+    }
+    
+    /* Stack buttons vertically on very small screens */
+    .hero-btns {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        width: 100%;
+    }
+    
+    .btn-whatsapp, 
+    .btn-ghost {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    /* Better touch targets */
+    .btn-whatsapp, 
+    .btn-ghost {
+        min-height: 44px;
+        padding: 12px 20px;
+    }
+    
+    /* Adjust counter for small screens */
+    .hero-counter {
+        left: 20px;
+        bottom: 16px;
+    }
+    
+    .hero-counter-cur,
+    .hero-counter-tot {
+        font-size: 11px;
+    }
+    
+    .hero-counter-track {
+        width: 40px;
+    }
+    
+    /* Smaller dots for small screens */
+    .hero-dot {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-inner {
+        /* padding: 40px 24px; */
+        padding: 40px 24px;
+    }
+    
+    .hero-headline {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .hero-desc {
+        margin-bottom: 20px;
+    }
+    
+    .hero-counter {
+        bottom: 12px;
+    }
+    
+    .hero-dots {
+        bottom: 16px;
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg,
+    .hero-bg--active,
+    .hero-bg--prev,
+    .hero-counter-fill,
+    .hero-dot,
+    .hero-arrow,
+    .btn-whatsapp,
+    .btn-ghost {
+        transition: none;
+        animation: none;
+    }
+    
+    .hero-bg {
+        transform: none;
+    }
 }

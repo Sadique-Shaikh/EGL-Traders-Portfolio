@@ -76,6 +76,7 @@ const whatsappNumber = ['+', '9', '1', '9', '2', '0', '9', '6', '1', '5', '8', '
 const ProductModal = ({ product, onClose }) => {
     const details = productDetails[product?.title];
     const [activeIndex, setActiveIndex] = useState(0);
+    const modalContentRef = useRef(null);
 
     // Crossfade state
     const [imgSrc, setImgSrc] = useState('');
@@ -88,6 +89,11 @@ const ProductModal = ({ product, onClose }) => {
     // Stagger triggers
     const [specsVisible, setSpecsVisible] = useState(false);
     const [chipsVisible, setChipsVisible] = useState(false);
+
+    // Swipe state
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
+    const [isSwiping, setIsSwiping] = useState(false);
 
     // Timers ref to clean up on unmount
     const timers = useRef([]);
@@ -121,11 +127,14 @@ const ProductModal = ({ product, onClose }) => {
         setImgFading(false);
         setTextFading(false);
         triggerStagger();
-    }, [product]);
+    }, [product, details, triggerStagger]);
 
     // Switch item with crossfade + text swap
     const switchTo = useCallback((index) => {
         if (index === activeIndex) return;
+        if (index < 0) index = details.items.length - 1;
+        if (index >= details.items.length) index = 0;
+        
         clearTimers();
 
         // 1. Fade out image and text
@@ -149,19 +158,81 @@ const ProductModal = ({ product, onClose }) => {
         }, 220);
     }, [activeIndex, details, triggerStagger]);
 
+    // Next product
+    const nextProduct = useCallback(() => {
+        switchTo(activeIndex + 1);
+    }, [activeIndex, switchTo]);
+
+    // Previous product
+    const prevProduct = useCallback(() => {
+        switchTo(activeIndex - 1);
+    }, [activeIndex, switchTo]);
+
+    // Handle touch start for swipe
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.touches[0].clientX;
+        setIsSwiping(true);
+    };
+
+    // Handle touch move (optional - for visual feedback)
+    const handleTouchMove = (e) => {
+        if (!isSwiping) return;
+        const currentX = e.touches[0].clientX;
+        const diff = currentX - touchStartX.current;
+        
+        // Optional: Add visual feedback while swiping
+        // You can add a transform effect here if desired
+    };
+
+    // Handle touch end for swipe
+    const handleTouchEnd = (e) => {
+        if (!isSwiping) {
+            setIsSwiping(false);
+            return;
+        }
+        
+        touchEndX.current = e.changedTouches[0].clientX;
+        const swipeThreshold = 50; // Minimum distance for swipe
+        const diff = touchEndX.current - touchStartX.current;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe Right - Previous product
+                prevProduct();
+            } else {
+                // Swipe Left - Next product
+                nextProduct();
+            }
+        }
+        
+        setIsSwiping(false);
+        touchStartX.current = 0;
+        touchEndX.current = 0;
+    };
+
     useEffect(() => {
-        if (product) document.body.style.overflow = 'hidden';
+        if (product) {
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+        }
         return () => {
             document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
             clearTimers();
         };
     }, [product]);
 
     useEffect(() => {
-        const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+        const handleKey = (e) => { 
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'ArrowLeft') prevProduct();
+            if (e.key === 'ArrowRight') nextProduct();
+        };
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, [onClose]);
+    }, [onClose, prevProduct, nextProduct]);
 
     if (!product || !details) return null;
 
@@ -180,11 +251,39 @@ const ProductModal = ({ product, onClose }) => {
             aria-modal="true"
             aria-label={`${product.title} details`}
         >
-            <div className="pmodal" onClick={(e) => e.stopPropagation()}>
-
+            <div 
+                className="pmodal" 
+                onClick={(e) => e.stopPropagation()}
+                ref={modalContentRef}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
                 {/* ── LEFT: image panel ── */}
                 <div className="pmodal-left">
                     <div className="pmodal-img-main">
+
+                        {/* Swipe indicators (optional) */}
+                        <div className="pmodal-swipe-indicators">
+                            <button 
+                                className="pmodal-swipe-btn pmodal-swipe-prev" 
+                                onClick={prevProduct}
+                                aria-label="Previous product"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M15 18l-6-6 6-6" />
+                                </svg>
+                            </button>
+                            <button 
+                                className="pmodal-swipe-btn pmodal-swipe-next" 
+                                onClick={nextProduct}
+                                aria-label="Next product"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M9 18l6-6-6-6" />
+                                </svg>
+                            </button>
+                        </div>
 
                         {/* Crossfading image */}
                         <img
