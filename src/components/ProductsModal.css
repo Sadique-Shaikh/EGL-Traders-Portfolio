@@ -31,11 +31,11 @@
     grid-template-columns: 1fr 1fr;
     overflow: hidden;
     box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
-    animation: pPanelIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: pPanelIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes pPanelIn {
-    from { opacity: 0; transform: scale(0.96) translateY(20px); }
+    from { opacity: 0; transform: scale(0.94) translateY(22px); }
     to   { opacity: 1; transform: scale(1)    translateY(0);    }
 }
 
@@ -57,32 +57,56 @@
     min-height: 0;
 }
 
-.pmodal-img-main img {
+/* ── Crossfading image ── */
+.pmodal-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    animation: pImgFade 0.3s ease;
+    /* Smooth crossfade on src swap */
+    transition: opacity 0.32s ease, transform 0.32s ease;
+    opacity: 1;
+    transform: scale(1);
 }
 
-@keyframes pImgFade {
-    from { opacity: 0.3; transform: scale(1.04); }
-    to   { opacity: 1;   transform: scale(1);    }
+.pmodal-img--fading {
+    opacity: 0;
+    transform: scale(1.04);
 }
 
-/* Category pill over image */
+/* ── Gradient: makes image bottom legible ── */
+.pmodal-img-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(8, 18, 12, 0.90) 0%,
+        rgba(8, 18, 12, 0.28) 45%,
+        transparent 68%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Category pill overlay */
 .pmodal-img-overlay {
     position: absolute;
     top: 16px;
     left: 16px;
-    z-index: 2;
+    z-index: 3;
+    animation: pBadgeSlide 0.5s 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pBadgeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .pmodal-category-pill {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(8, 20, 12, 0.7);
+    background: rgba(8, 20, 12, 0.70);
     border: 1px solid rgba(200, 169, 110, 0.45);
     color: #c8a96e;
     font-size: 11px;
@@ -99,15 +123,60 @@
     font-size: 13px;
 }
 
-/* Thumbnail strip */
+/* ── Image footer: item name + tagline over gradient ── */
+.pmodal-img-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    padding: 16px 18px 14px;
+    /* Slide up on modal open */
+    animation: pFooterSlide 0.48s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+    /* Fade on item switch */
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pmodal-img-footer--fading {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+@keyframes pFooterSlide {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.pmodal-img-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    margin: 0 0 3px;
+}
+
+.pmodal-img-tagline-overlay {
+    font-size: 11px;
+    color: rgba(200, 169, 110, 0.82);
+    font-style: italic;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ── Thumbnail strip ── */
 .pmodal-thumbs {
     display: flex;
     gap: 8px;
     padding: 12px 14px;
-    background: rgba(0, 0, 0, 0.38);
+    background: rgba(0, 0, 0, 0.42);
     overflow-x: auto;
     scrollbar-width: none;
     flex-shrink: 0;
+    position: relative;
+    z-index: 4;
 }
 
 .pmodal-thumbs::-webkit-scrollbar { display: none; }
@@ -118,12 +187,12 @@
     height: 46px;
     border-radius: 8px;
     overflow: hidden;
-    border: 1.5px solid transparent;
+    border: 2px solid transparent;
     padding: 0;
     background: none;
     cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+    opacity: 0.45;
+    transition: opacity 0.22s, border-color 0.22s, transform 0.22s, box-shadow 0.22s;
 }
 
 .pmodal-thumb img {
@@ -136,12 +205,14 @@
 .pmodal-thumb--active {
     border-color: #c8a96e;
     opacity: 1;
-    transform: scale(1.07);
+    transform: scale(1.1);
+    box-shadow: 0 0 0 1px rgba(200, 169, 110, 0.28);
 }
 
 .pmodal-thumb:hover:not(.pmodal-thumb--active) {
-    opacity: 0.8;
+    opacity: 0.78;
     border-color: rgba(200, 169, 110, 0.4);
+    transform: scale(1.05);
 }
 
 /* ════════════════════════════════
@@ -167,6 +238,13 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    /* Staggered reveal on open */
+    animation: pContentIn 0.4s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pContentIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .pmodal-eyebrow {
@@ -188,7 +266,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.25s;
     flex-shrink: 0;
 }
 
@@ -196,9 +274,11 @@
     background: #ffe8e8;
     border-color: #f5c0c0;
     color: #c0392b;
+    /* Spin the × on hover */
+    transform: rotate(90deg);
 }
 
-/* Text content */
+/* ── Product name: fades + slides on item switch ── */
 .pmodal-name {
     font-size: 24px;
     font-weight: 700;
@@ -206,12 +286,17 @@
     margin: 0 0 4px;
     line-height: 1.2;
     font-family: 'Playfair Display', serif;
-    animation: pTextSlide 0.25s ease;
+    /* Open animation */
+    animation: pContentIn 0.4s 0.14s cubic-bezier(0.22, 1, 0.36, 1) both;
+    /* Switch transition */
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-@keyframes pTextSlide {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0);   }
+.pmodal-name--fading {
+    opacity: 0;
+    transform: translateY(6px);
 }
 
 .pmodal-tagline {
@@ -220,14 +305,24 @@
     font-weight: 500;
     margin: 0 0 10px;
     font-style: italic;
+    animation: pContentIn 0.4s 0.20s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ── Description: same fade on switch ── */
 .pmodal-desc {
     font-size: 13.5px;
     color: #4a5e52;
     line-height: 1.75;
     margin: 0 0 18px;
-    animation: pTextSlide 0.25s ease;
+    animation: pContentIn 0.4s 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pmodal-desc--fading {
+    opacity: 0;
+    transform: translateY(6px);
 }
 
 /* Sections */
@@ -246,7 +341,7 @@
     margin: 0 0 10px;
 }
 
-/* Specs grid */
+/* ── Specs grid: staggered entry ── */
 .pmodal-specs {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -260,6 +355,19 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    /* Start hidden; JS adds --visible after stagger delay */
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.28s ease, transform 0.28s ease, background 0.16s;
+}
+
+.pmodal-spec-card--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pmodal-spec-card:hover {
+    background: #edf5ee;
 }
 
 .pmodal-spec-key {
@@ -273,7 +381,7 @@
     color: #0c1e12;
 }
 
-/* Related chips */
+/* ── Related chips: staggered entry + tactile hover ── */
 .pmodal-related {
     display: flex;
     gap: 7px;
@@ -291,7 +399,15 @@
     cursor: pointer;
     font-size: 12px;
     color: #1a3322;
-    transition: border-color 0.18s, background 0.18s;
+    /* Start hidden; JS adds --visible after stagger delay */
+    opacity: 0;
+    transform: scale(0.88);
+    transition: opacity 0.26s ease, transform 0.26s ease, border-color 0.18s, background 0.18s, box-shadow 0.18s;
+}
+
+.pmodal-related-chip--visible {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .pmodal-related-chip img {
@@ -305,6 +421,9 @@
 .pmodal-related-chip:hover {
     border-color: #c8a96e;
     background: #fdf9f2;
+    /* Lift on hover */
+    transform: scale(1) translateY(-2px);
+    box-shadow: 0 4px 12px rgba(200, 169, 110, 0.20);
 }
 
 /* Footer note */
@@ -318,6 +437,7 @@
     padding: 12px 14px;
     margin-bottom: 16px;
     margin-top: 4px;
+    animation: pContentIn 0.4s 0.44s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .pmodal-note .ti {
@@ -338,7 +458,7 @@
     color: #1a3322;
 }
 
-/* CTA — pinned at bottom */
+/* ── CTA: pinned at bottom ── */
 .pmodal-cta {
     margin-top: auto;
     width: 100%;
@@ -354,13 +474,20 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
-    transition: box-shadow 0.2s, transform 0.15s;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.28);
+    transition: box-shadow 0.22s, transform 0.18s, background 0.18s;
+    animation: pContentIn 0.4s 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .pmodal-cta:hover {
-    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
-    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.46);
+    transform: translateY(-2px);
+    background: #20c05c;
+}
+
+.pmodal-cta:active {
+    transform: scale(0.98) translateY(0);
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.22);
 }
 
 /* ── Responsive ── */
@@ -380,5 +507,31 @@
     .pmodal-right {
         max-height: none;
         padding: 20px 18px 18px;
+    }
+}
+
+/* ── Reduced motion: respect user preference ── */
+@media (prefers-reduced-motion: reduce) {
+    .pmodal,
+    .pmodal-backdrop,
+    .pmodal-img,
+    .pmodal-img-footer,
+    .pmodal-img-overlay,
+    .pmodal-header,
+    .pmodal-name,
+    .pmodal-tagline,
+    .pmodal-desc,
+    .pmodal-spec-card,
+    .pmodal-related-chip,
+    .pmodal-note,
+    .pmodal-cta {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .pmodal-spec-card,
+    .pmodal-related-chip {
+        opacity: 1;
+        transform: none;
     }
 }
