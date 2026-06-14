@@ -20,6 +20,12 @@ const slides = [
         desc: 'Authentic flavours from the finest growing regions, delivered at scale.',
     },
     {
+        image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=1400&q=85',
+        eyebrow: 'Artisan Confectionery',
+        title: 'Fine Chocolates\nSourced from\nthe World\'s Best',
+        desc: 'Premium cacao and handcrafted confections from Belgium, Switzerland, and beyond.',
+    },
+    {
         image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1400&q=85',
         eyebrow: 'Custom Sourcing',
         title: 'Your Vision,\nOur Global\nNetwork',
@@ -174,58 +180,33 @@ const Hero = () => {
                                     WhatsApp Us
                                 </motion.button>
 
-                                {/* WhatsApp call — ghost */}
+                                {/* View Products */}
                                 <motion.button
-                                    className="btn-ghost"
+                                    className="btn-ghost flex items-center gap-2"
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.97 }}
-                                    onClick={() => window.open(`https://wa.me/${whatsappNumber}?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products`, '_blank')}
+                                    onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}
                                 >
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18C1.61 2.09 2.48 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.09a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
-                                    Request a Call
+                                    View Products
                                 </motion.button>
                             </motion.div>
 
                         </motion.div>
                     </div>
-
-                    {/* RIGHT — floating image + stat badges */}
-                    {/* <div className="hero-right">
-                        <div className="float-image-wrap">
-                            <motion.div
-                                variants={imageVariants}
-                                initial="hidden"
-                                animate="visible"
-                                style={{ x: springX, y: springY }}
-                                className="float-image-motion"
-                            >
-                                <div className="float-image">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80"
-                                        alt="EGL Traders global cargo"
-                                    />
-                                </div>
-                            </motion.div>
-
-                            <StatBadge
-                                value="25+"
-                                label="Countries served"
-                                position={{ top: '16px', right: '-24px' }}
-                                delay={0.8}
-                                dark={false}
-                            />
-                            <StatBadge
-                                value="100%"
-                                label="Zero disputes"
-                                position={{ bottom: '32px', left: '-28px' }}
-                                delay={1.0}
-                                dark={true}
-                            />
-                        </div>
-                    </div> */}
-
                 </div>
 
                 {/* ── Carousel controls ── */}

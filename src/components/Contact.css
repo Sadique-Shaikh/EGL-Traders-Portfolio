@@ -1,26 +1,75 @@
-/* src/components/CTASection.css */
+/* src/components/CTASection.css  — replaces / merges into Contact.css */
 
 /* ── CTA Section ─────────────────────────────────────────────────────────── */
 
 .cta-section {
-    background: #0F2D1F;
-    padding: 96px 48px;
+    background: linear-gradient(135deg, #0F2D1F 0%, #163622 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 110px 48px;
     text-align: center;
     font-family: 'DM Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
 }
+
+/* ── Animated dot-grid canvas ────────────────────────────────────────────── */
+
+.cta-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Radial glow ─────────────────────────────────────────────────────────── */
+
+.cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(200, 151, 74, 0.14) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: cta-glow-pulse 7s ease-in-out infinite;
+}
+
+@keyframes cta-glow-pulse {
+    0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+    50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* ── Content wrapper ─────────────────────────────────────────────────────── */
 
 .cta-content {
     max-width: 640px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
+
+/* ── Heading ─────────────────────────────────────────────────────────────── */
 
 .cta-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 40px;
+    font-size: 44px;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.2;
     margin-bottom: 18px;
+
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.cta-heading.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .cta-heading-accent {
@@ -28,11 +77,64 @@
     font-style: italic;
 }
 
+/* ── Subtext ─────────────────────────────────────────────────────────────── */
+
 .cta-subtext {
     font-size: 15px;
-    line-height: 1.7;
+    line-height: 1.75;
     color: #8DB09A;
+    margin-bottom: 28px;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s ease 0.1s, transform 0.65s ease 0.1s;
+}
+
+.cta-subtext.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Trust row ───────────────────────────────────────────────────────────── */
+
+.cta-trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
     margin-bottom: 36px;
+
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease 0.18s, transform 0.6s ease 0.18s;
+}
+
+.cta-trust-row.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cta-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(141, 176, 154, 0.85);
+    letter-spacing: 0.3px;
+}
+
+.cta-trust-item .ti {
+    font-size: 14px;
+    color: #C8974A;
+}
+
+.cta-trust-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(200, 151, 74, 0.4);
 }
 
 /* ── Buttons ─────────────────────────────────────────────────────────────── */
@@ -40,8 +142,17 @@
 .cta-buttons {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.28s, transform 0.6s ease 0.28s;
+}
+
+.cta-buttons.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .cta-btn {
@@ -51,24 +162,24 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    padding: 13px 28px;
+    padding: 14px 30px;
     border-radius: 8px;
     text-decoration: none;
     transition: all 0.25s ease;
     cursor: pointer;
+    border: none;
 }
 
-/* Green WhatsApp button */
+/* WhatsApp button */
 .cta-btn-whatsapp {
     background: #25D366;
     color: #ffffff;
-    border: none;
 }
 
 .cta-btn-whatsapp:hover {
     background: #1ebe5a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
 }
 
 .cta-btn-whatsapp .ti {
@@ -79,13 +190,14 @@
 .cta-btn-outline {
     background: transparent;
     color: #C8974A;
-    border: 1.5px solid #C8974A;
+    border: 1.5px solid rgba(200, 151, 74, 0.6);
 }
 
 .cta-btn-outline:hover {
     background: rgba(200, 151, 74, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(200, 151, 74, 0.15);
+    border-color: #C8974A;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(200, 151, 74, 0.18);
 }
 
 /* ── Footer ──────────────────────────────────────────────────────────────── */
@@ -94,7 +206,7 @@
     background: #091f15;
     padding: 24px 48px;
     font-family: 'DM Sans', sans-serif;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer-inner {
@@ -126,6 +238,7 @@
     font-weight: 700;
     color: #C8974A;
     letter-spacing: 0.5px;
+    overflow: hidden;
 }
 
 .footer-logo-name {
@@ -159,25 +272,22 @@
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 640px) {
-    .cta-section {
-        padding: 64px 20px;
-    }
+    .cta-section { padding: 72px 20px; }
+    .cta-heading { font-size: 32px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .site-footer { padding: 20px; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .cta-trust-row { gap: 10px; }
+}
 
-    .cta-heading {
-        font-size: 30px;
-    }
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
 
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
+@media (prefers-reduced-motion: reduce) {
+    .cta-heading, .cta-subtext, .cta-trust-row, .cta-buttons {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
-
-    .site-footer {
-        padding: 20px;
-    }
-
-    .footer-inner {
-        flex-direction: column;
-        text-align: center;
-    }
+    .cta-glow { animation: none; }
+    .cta-canvas { display: none; }
 }

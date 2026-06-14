@@ -5,24 +5,75 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
    ─────────────────────────────────────────────────────────────────────────── */
 
+/* ── Section ─────────────────────────────────────────────────────────────── */
+
 .services-section {
-    padding: 64px 48px;
-    background: var(--color-bgSecondary, '#FAFDF9');
+    position: relative;
+    padding: 80px 48px;
+    background: var(--color-bgSecondary, #FAFDF9);
     max-width: 1280px;
     margin: 0 auto;
     font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+}
+
+/* ── Decorative background orbs ─────────────────────────────────────────── */
+
+.services-bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(72px);
+    opacity: 0.35;
+    animation: orb-drift 12s ease-in-out infinite alternate;
+}
+
+.services-bg-orb--1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(200, 151, 74, 0.25) 0%, transparent 70%);
+    top: -120px;
+    right: -80px;
+    animation-delay: 0s;
+}
+
+.services-bg-orb--2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(90, 144, 112, 0.2) 0%, transparent 70%);
+    bottom: -60px;
+    left: -40px;
+    animation-delay: -6s;
+}
+
+@keyframes orb-drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 20px) scale(1.08); }
 }
 
 /* ── Header ─────────────────────────────────────────────────────────────── */
 
 .services-header {
-    margin-bottom: 40px;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+
+    /* Scroll-in animation (starts hidden) */
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.services-header.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .services-eyebrow {
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: #C8974A;
     margin-bottom: 10px;
@@ -30,11 +81,11 @@
 
 .services-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 700;
     color: #1a1a1a;
     line-height: 1.2;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .services-heading-accent {
@@ -42,11 +93,18 @@
     font-style: italic;
 }
 
+/* ── Animated heading rule ───────────────────────────────────────────────── */
+
 .services-heading-rule {
-    width: 40px;
+    width: 0;           /* starts at 0, animates to 48px */
     height: 3px;
-    background: #C8974A;
+    background: linear-gradient(90deg, #C8974A, #e0b472);
     border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.services-heading-rule.rule-animate {
+    width: 48px;
 }
 
 /* ── Grid ───────────────────────────────────────────────────────────────── */
@@ -54,23 +112,81 @@
 .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 22px;
+    position: relative;
+    z-index: 1;
 }
 
-/* ── Card ───────────────────────────────────────────────────────────────── */
+/* ── Card — base ─────────────────────────────────────────────────────────── */
 
 .service-card {
+    position: relative;
     background: #ffffff;
     border: 1px solid #e8eae8;
-    border-radius: 12px;
-    padding: 32px 28px;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 16px;
+    padding: 32px 28px 26px;
+    overflow: hidden;
     cursor: default;
+
+    /* Scroll-in animation — each card staggers via --card-index */
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+        opacity 0.55s ease calc(var(--card-index, 0) * 0.1s),
+        transform 0.55s ease calc(var(--card-index, 0) * 0.1s),
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
+.service-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover: lift + golden border + warm shadow */
 .service-card:hover {
     border-color: #C8974A;
-    box-shadow: 0 4px 20px rgba(200, 151, 74, 0.1);
+    box-shadow:
+        0 8px 32px rgba(200, 151, 74, 0.14),
+        0 2px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
+}
+
+/* Keep translateY(-4px) when card is both visible and hovered */
+.service-card.is-visible:hover {
+    transform: translateY(-4px);
+}
+
+/* ── Shimmer overlay (sweeps left→right on hover) ───────────────────────── */
+
+.service-card-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(200, 151, 74, 0.07) 50%,
+        transparent 60%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.service-card:hover .service-card-shimmer {
+    transform: translateX(100%);
+}
+
+/* ── Card top row (icon + stat) ─────────────────────────────────────────── */
+
+.service-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
 }
 
 /* ── Icon ───────────────────────────────────────────────────────────────── */
@@ -81,24 +197,46 @@
     justify-content: center;
     width: 48px;
     height: 48px;
-    border-radius: 10px;
+    border-radius: 12px;
     background: rgba(141, 176, 154, 0.15);
-    margin-bottom: 18px;
-    transition: background 0.25s ease;
+    transition: background 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Icon bounce on hover */
 .service-card:hover .service-icon-wrap {
-    background: rgba(200, 151, 74, 0.1);
+    background: rgba(200, 151, 74, 0.12);
+    transform: scale(1.12) rotate(-4deg);
 }
 
 .service-icon-wrap .ti {
     font-size: 22px;
     color: #5a9070;
-    transition: color 0.25s ease;
+    transition: color 0.3s ease;
 }
 
 .service-card:hover .service-icon-wrap .ti {
     color: #C8974A;
+}
+
+/* ── Stat badge ──────────────────────────────────────────────────────────── */
+
+.service-stat {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #C8974A;
+    background: rgba(200, 151, 74, 0.1);
+    border: 1px solid rgba(200, 151, 74, 0.2);
+    border-radius: 20px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover .service-stat {
+    background: rgba(200, 151, 74, 0.16);
+    border-color: rgba(200, 151, 74, 0.4);
 }
 
 /* ── Text ───────────────────────────────────────────────────────────────── */
@@ -109,19 +247,62 @@
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .service-desc {
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: #5a6a60;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Footer: "Learn more" link ───────────────────────────────────────────── */
+
+.service-card-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f2f0;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s ease;
+}
+
+.service-card:hover .service-card-footer {
+    border-color: rgba(200, 151, 74, 0.2);
+}
+
+.service-learn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5a9070;
+    transition: color 0.25s ease, gap 0.25s ease;
+}
+
+.service-card:hover .service-learn-more {
+    color: #C8974A;
+    gap: 10px;
+}
+
+.service-arrow {
+    font-size: 14px;
+    transition: transform 0.25s ease;
+}
+
+.service-card:hover .service-arrow {
+    transform: translateX(3px);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
     .services-section {
-        padding: 48px 20px;
+        padding: 56px 20px;
     }
 
     .services-grid {
@@ -130,5 +311,41 @@
 
     .services-heading {
         font-size: 28px;
+    }
+
+    .services-bg-orb--1 {
+        width: 260px;
+        height: 260px;
+        top: -60px;
+        right: -40px;
+    }
+
+    .services-bg-orb--2 {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    .service-card,
+    .services-header {
+        opacity: 1;
+        transform: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .services-bg-orb {
+        animation: none;
+    }
+
+    .services-heading-rule {
+        width: 48px;
+        transition: none;
+    }
+
+    .service-card-shimmer {
+        display: none;
     }
 }
