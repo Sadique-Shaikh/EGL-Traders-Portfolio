@@ -112,12 +112,12 @@ const Services = () => {
                         <h3 className="service-title">{service.title}</h3>
                         <p className="service-desc">{service.description}</p>
 
-                        <div className="service-card-footer">
+                        {/* <div className="service-card-footer">
                             <span className="service-learn-more">
                                 Learn more
                                 <i className="ti ti-arrow-right service-arrow" aria-hidden="true" />
                             </span>
-                        </div>
+                        </div> */}
                     </div>
                 ))}
             </div>

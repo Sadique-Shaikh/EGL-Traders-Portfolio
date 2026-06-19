@@ -1,7 +1,8 @@
 // src/components/CTASection.jsx
 import React, { useEffect, useRef } from 'react';
 import './Contact.css';
-import logo from './../assets/new Egl logo.PNG';
+// import logo from './../assets/new Egl logo.PNG';
+import logo from './../assets/page_2_transparent.png';
 
 const CTASection = () => {
     const sectionRef = useRef(null);
@@ -137,16 +138,16 @@ const CTASection = () => {
             <footer className="site-footer">
                 <div className="footer-inner">
                     <div className="footer-brand">
-                        <div className="footer-logo-circle">
+                        {/* <div className="footer-logo-circle"> */}
                             <img
                                 src={logo}
                                 alt="EGL Logo"
                                 className="h-8 sm:h-10 w-auto object-contain"
                             />
-                        </div>
+                        {/* </div> */}
                         <span className="footer-logo-name">EGL TRADERS</span>
                     </div>
-                    <p className="footer-copy">© 2025 EGL Traders. All rights reserved.</p>
+                    <p className="footer-copy">© 2026 EGL Traders. All rights reserved.</p>
                     <div className="footer-links">
                         <a href="#privacy">Privacy</a>
                         <a href="#terms">Terms</a>

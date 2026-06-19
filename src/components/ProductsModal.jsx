@@ -134,7 +134,7 @@ const ProductModal = ({ product, onClose }) => {
         if (index === activeIndex) return;
         if (index < 0) index = details.items.length - 1;
         if (index >= details.items.length) index = 0;
-        
+
         clearTimers();
 
         // 1. Fade out image and text
@@ -179,7 +179,7 @@ const ProductModal = ({ product, onClose }) => {
         if (!isSwiping) return;
         const currentX = e.touches[0].clientX;
         const diff = currentX - touchStartX.current;
-        
+
         // Optional: Add visual feedback while swiping
         // You can add a transform effect here if desired
     };
@@ -190,11 +190,11 @@ const ProductModal = ({ product, onClose }) => {
             setIsSwiping(false);
             return;
         }
-        
+
         touchEndX.current = e.changedTouches[0].clientX;
         const swipeThreshold = 50; // Minimum distance for swipe
         const diff = touchEndX.current - touchStartX.current;
-        
+
         if (Math.abs(diff) > swipeThreshold) {
             if (diff > 0) {
                 // Swipe Right - Previous product
@@ -204,7 +204,7 @@ const ProductModal = ({ product, onClose }) => {
                 nextProduct();
             }
         }
-        
+
         setIsSwiping(false);
         touchStartX.current = 0;
         touchEndX.current = 0;
@@ -212,20 +212,18 @@ const ProductModal = ({ product, onClose }) => {
 
     useEffect(() => {
         if (product) {
+            document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100%';
         }
         return () => {
+            document.documentElement.style.overflow = '';
             document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
             clearTimers();
         };
     }, [product]);
 
     useEffect(() => {
-        const handleKey = (e) => { 
+        const handleKey = (e) => {
             if (e.key === 'Escape') onClose();
             if (e.key === 'ArrowLeft') prevProduct();
             if (e.key === 'ArrowRight') nextProduct();
@@ -251,8 +249,8 @@ const ProductModal = ({ product, onClose }) => {
             aria-modal="true"
             aria-label={`${product.title} details`}
         >
-            <div 
-                className="pmodal" 
+            <div
+                className="pmodal"
                 onClick={(e) => e.stopPropagation()}
                 ref={modalContentRef}
                 onTouchStart={handleTouchStart}
@@ -265,8 +263,8 @@ const ProductModal = ({ product, onClose }) => {
 
                         {/* Swipe indicators (optional) */}
                         <div className="pmodal-swipe-indicators">
-                            <button 
-                                className="pmodal-swipe-btn pmodal-swipe-prev" 
+                            <button
+                                className="pmodal-swipe-btn pmodal-swipe-prev"
                                 onClick={prevProduct}
                                 aria-label="Previous product"
                             >
@@ -274,8 +272,8 @@ const ProductModal = ({ product, onClose }) => {
                                     <path d="M15 18l-6-6 6-6" />
                                 </svg>
                             </button>
-                            <button 
-                                className="pmodal-swipe-btn pmodal-swipe-next" 
+                            <button
+                                className="pmodal-swipe-btn pmodal-swipe-next"
                                 onClick={nextProduct}
                                 aria-label="Next product"
                             >

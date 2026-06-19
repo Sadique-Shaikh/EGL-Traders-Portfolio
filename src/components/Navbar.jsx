@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import ThemeSwitcher from './ThemeSwitcher';
-import logo from './../assets/new Egl logo.PNG';
+// import logo from './../assets/new Egl logo.PNG';
+import logo from './../assets/page_2_transparent.png';
 
 const AnimatedCTAButton = () => {
     const { colors } = useTheme();
@@ -200,7 +201,7 @@ const Navbar = () => {
                     borderBottom: `1px solid ${colors.borderLight}`,
                 }}
             >
-                <div className="flex justify-between items-center px-4 sm:px-6 py-3 w-full max-w-full overflow-visible">
+                <div className="flex justify-between items-center px-3 sm:px-6  w-full max-w-full overflow-visible">
                     {/* LEFT — Logo Area */}
                     <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                         {/* Mobile Menu Button */}
@@ -220,7 +221,7 @@ const Navbar = () => {
 
                         {/* Logo Image */}
                         <div
-                            className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-4xl p-1 cursor-pointer shrink-0"
+                            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center rounded-4xl cursor-pointer shrink-0"
                             style={{
                                 background: colors.bgSecondary,
                             }}
@@ -229,7 +230,7 @@ const Navbar = () => {
                             <img
                                 src={logo}
                                 alt="EGL Logo"
-                                className="h-8 sm:h-10 w-auto object-contain"
+                                className="h-10 sm:h-12 md:h-14 w-auto object-contain"
                             />
                         </div>
 
