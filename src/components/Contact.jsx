@@ -1,14 +1,23 @@
 // src/components/CTASection.jsx
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Contact.css';
-// import logo from './../assets/new Egl logo.PNG';
-import logo from './../assets/page_2_transparent.png';
+import logo from './../assets/Logo.webp';
+import QuoteModal from './QuoteModal'; // Make sure this imports correctly
 
 const CTASection = () => {
     const sectionRef = useRef(null);
     const canvasRef = useRef(null);
+     
+    const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
-    const whatsappNumber = ['+', '9', '1', '9', '2', '0', '9', '6', '1', '5', '8', '2', '5'].join('');
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '919209615825';
+
+    const handleWhatsApp = () => {
+        const message = encodeURIComponent(
+            "Hi EGL Traders,\n\nI'd like to get a quote for your products. Could you please share more details about your offerings?"
+        );
+        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+    };
 
     // Scroll-triggered reveals
     useEffect(() => {
@@ -117,34 +126,39 @@ const CTASection = () => {
                     </div>
 
                     <div className="cta-buttons">
-                        <a
-                            onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank')}
+                        <button
+                            onClick={handleWhatsApp}
                             className="cta-btn cta-btn-whatsapp"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={`https://wa.me/${whatsappNumber}`}
                         >
                             <i className="ti ti-brand-whatsapp" aria-hidden="true" />
                             WhatsApp Us
-                        </a>
-                        <a href="#contact" className="cta-btn cta-btn-outline">
+                        </button>
+                        <button 
+                            onClick={() => setIsQuoteModalOpen(true)} 
+                            className="cta-btn cta-btn-outline"
+                        >
+                            <i className="ti ti-mail" aria-hidden="true" />
                             Get a Quote
-                        </a>
+                        </button>
                     </div>
                 </div>
             </section>
+
+            {/* Quote Modal */}
+            <QuoteModal 
+                isOpen={isQuoteModalOpen} 
+                onClose={() => setIsQuoteModalOpen(false)} 
+            />
 
             {/* ── Footer ──────────────────────────────────────────────────── */}
             <footer className="site-footer">
                 <div className="footer-inner">
                     <div className="footer-brand">
-                        {/* <div className="footer-logo-circle"> */}
-                            <img
-                                src={logo}
-                                alt="EGL Logo"
-                                className="h-8 sm:h-10 w-auto object-contain"
-                            />
-                        {/* </div> */}
+                        <img
+                            src={logo}
+                            alt="EGL Logo"
+                            className="h-8 sm:h-10 w-auto object-contain"
+                        />
                         <span className="footer-logo-name">EGL TRADERS</span>
                     </div>
                     <p className="footer-copy">© 2026 EGL Traders. All rights reserved.</p>

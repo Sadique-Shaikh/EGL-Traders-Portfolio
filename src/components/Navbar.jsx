@@ -3,73 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import ThemeSwitcher from './ThemeSwitcher';
-// import logo from './../assets/new Egl logo.PNG';
-import logo from './../assets/page_2_transparent.png';
-
-const AnimatedCTAButton = () => {
-    const { colors } = useTheme();
-
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-        >
-            <motion.button
-                animate={{
-                    x: [0, -6, 6, -5, 5, -4, 4, -3, 3, -2, 2, -1, 1, 0],
-                    rotate: [0, -4, 4, -3, 3, -2, 2, -1, 1, 0],
-                    y: [0, -3, 0, -2, 0],
-                    scale: [1, 1.06, 1.03, 1.04, 1],
-                }}
-                transition={{
-                    duration: 1,
-                    delay: 0.4,
-                    ease: "anticipate",
-                    times: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                }}
-                whileHover={{
-                    scale: 1.05,
-                    transition: { duration: 0.2 }
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap"
-                style={{
-                    fontFamily: "var(--font-body)",
-                    background: colors.accent,
-                    color: colors.bgPrimary,
-                    border: 'none',
-                    cursor: 'pointer',
-                    boxShadow: `0 4px 12px ${colors.accent}60`,
-                }}
-            >
-                <span className="flex items-center gap-2">
-                    <motion.svg
-                        className="w-3 h-3 sm:w-4 sm:h-4"
-                        animate={{
-                            rotate: [0, -15, 15, -10, 10, 0],
-                        }}
-                        transition={{
-                            duration: 0.8,
-                            delay: 0.6,
-                        }}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </motion.svg>
-                    GET A QUOTE
-                </span>
-            </motion.button>
-        </motion.div>
-    );
-};
+// import logo from './../assets/new Egl logo.webp';
+import logo from './../assets/Logo.webp';
+import QuoteModal from './QuoteModal';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const { colors } = useTheme();
     const [activeLink, setActiveLink] = useState('home');
+    const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
     // Split navigation items for responsive design
     const mainNavItems = [
@@ -201,7 +143,7 @@ const Navbar = () => {
                     borderBottom: `1px solid ${colors.borderLight}`,
                 }}
             >
-                <div className="flex justify-between items-center px-3 sm:px-6  w-full max-w-full overflow-visible">
+                <div className="flex justify-between items-center px-3 sm:px-6 w-full max-w-full overflow-visible">
                     {/* LEFT — Logo Area */}
                     <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                         {/* Mobile Menu Button */}
@@ -290,7 +232,61 @@ const Navbar = () => {
                     {/* RIGHT — Theme Switcher + CTA Button */}
                     <div className="flex items-center gap-2 sm:gap-3 shrink-0" style={{ zIndex: 9999, position: 'relative' }}>
                         <ThemeSwitcher />
-                        <AnimatedCTAButton />
+                        {/* Animated CTA Button - Now defined inline */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <motion.button
+                                animate={{
+                                    x: [0, -6, 6, -5, 5, -4, 4, -3, 3, -2, 2, -1, 1, 0],
+                                    rotate: [0, -4, 4, -3, 3, -2, 2, -1, 1, 0],
+                                    y: [0, -3, 0, -2, 0],
+                                    scale: [1, 1.06, 1.03, 1.04, 1],
+                                }}
+                                transition={{
+                                    duration: 1,
+                                    delay: 0.4,
+                                    ease: "anticipate",
+                                    times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+                                }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    transition: { duration: 0.2 }
+                                }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsQuoteModalOpen(true)}
+                                className="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap"
+                                style={{
+                                    fontFamily: "var(--font-body)",
+                                    background: colors.accent,
+                                    color: colors.bgPrimary,
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    boxShadow: `0 4px 12px ${colors.accent}60`,
+                                }}
+                            >
+                                <span className="flex items-center gap-2">
+                                    <motion.svg
+                                        className="w-3 h-3 sm:w-4 sm:h-4"
+                                        animate={{
+                                            rotate: [0, -15, 15, -10, 10, 0],
+                                        }}
+                                        transition={{
+                                            duration: 0.8,
+                                            delay: 0.6,
+                                        }}
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </motion.svg>
+                                    GET A QUOTE
+                                </span>
+                            </motion.button>
+                        </motion.div>
                     </div>
                 </div>
 
@@ -341,6 +337,12 @@ const Navbar = () => {
                     )}
                 </AnimatePresence>
             </nav>
+
+            {/* Quote Modal */}
+            <QuoteModal
+                isOpen={isQuoteModalOpen}
+                onClose={() => setIsQuoteModalOpen(false)}
+            />
         </>
     );
 };

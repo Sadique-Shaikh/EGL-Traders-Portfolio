@@ -1,0 +1,460 @@
+/* src/components/QuoteModal.css */
+
+/* ── Backdrop ── */
+.qmodal-backdrop {
+    touch-action: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(8, 18, 12, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: qBackdropIn 0.22s ease;
+}
+
+@keyframes qBackdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ── Modal shell ── */
+.qmodal {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 880px;
+    max-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+    animation: qPanelIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes qPanelIn {
+    from { opacity: 0; transform: scale(0.94) translateY(22px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ════════════════════════════════
+   LEFT PANEL
+════════════════════════════════ */
+.qmodal-left {
+    background: #0c1e12;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative gradient */
+.qmodal-left::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(200, 169, 110, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.qmodal-left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.qmodal-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    background: rgba(200, 169, 110, 0.12);
+    border: 1px solid rgba(200, 169, 110, 0.25);
+    border-radius: 50%;
+    margin-bottom: 24px;
+}
+
+.qmodal-left-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 8px;
+    line-height: 1.2;
+}
+
+.qmodal-left-subtitle {
+    font-size: 14px;
+    color: rgba(200, 169, 110, 0.8);
+    margin: 0 0 28px;
+    line-height: 1.6;
+}
+
+.qmodal-left-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.qmodal-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.qmodal-feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(200, 169, 110, 0.2);
+    border-radius: 50%;
+    color: #c8a96e;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.qmodal-left-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+    margin-top: auto;
+}
+
+.qmodal-left-footer p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 10px;
+}
+
+.qmodal-whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #25D366;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.qmodal-whatsapp-link:hover {
+    color: #20c05c;
+}
+
+.qmodal-whatsapp-link svg {
+    fill: currentColor;
+}
+
+/* ════════════════════════════════
+   RIGHT PANEL
+════════════════════════════════ */
+.qmodal-right {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 28px 28px;
+    overflow-y: auto;
+    max-height: 88vh;
+}
+
+.qmodal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.qmodal-eyebrow {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: #c8a96e;
+}
+
+.qmodal-close {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background: #f5f5f5;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.25s;
+    flex-shrink: 0;
+}
+
+.qmodal-close:hover {
+    background: #ffe8e8;
+    border-color: #f5c0c0;
+    color: #c0392b;
+    transform: rotate(90deg);
+}
+
+/* ── Form ── */
+.qmodal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+}
+
+.qmodal-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.qmodal-form-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #4a5e52;
+    letter-spacing: 0.04em;
+}
+
+.qmodal-form-input,
+.qmodal-form-textarea {
+    padding: 10px 12px;
+    border: 1.5px solid #e4ece6;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #0c1e12;
+    background: #f8faf8;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    width: 100%;
+}
+
+.qmodal-form-input:focus,
+.qmodal-form-textarea:focus {
+    border-color: #c8a96e;
+    box-shadow: 0 0 0 3px rgba(200, 169, 110, 0.1);
+    background: #ffffff;
+}
+
+.qmodal-form-input::placeholder,
+.qmodal-form-textarea::placeholder {
+    color: #aab8ae;
+}
+
+.qmodal-form-input:disabled,
+.qmodal-form-textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.qmodal-form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.qmodal-submit-btn {
+    margin-top: 6px;
+    width: 100%;
+    background: #c8a96e;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: box-shadow 0.22s, transform 0.18s, background 0.18s;
+}
+
+.qmodal-submit-btn:hover:not(:disabled) {
+    box-shadow: 0 8px 24px rgba(200, 169, 110, 0.35);
+    transform: translateY(-2px);
+    background: #bca05e;
+}
+
+.qmodal-submit-btn:active:not(:disabled) {
+    transform: scale(0.98) translateY(0);
+}
+
+.qmodal-submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.qmodal-form-note {
+    font-size: 11px;
+    color: #8a9e90;
+    text-align: center;
+    margin: 6px 0 0;
+}
+
+/* ── Success State ── */
+.qmodal-success {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.qmodal-success-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.qmodal-success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0c1e12;
+    margin: 0 0 8px;
+}
+
+.qmodal-success-message {
+    font-size: 14px;
+    color: #4a5e52;
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 0 12px;
+}
+
+.qmodal-success-note {
+    font-size: 12px;
+    color: #8a9e90;
+    margin: 0;
+}
+
+/* ── Spinner ── */
+.qmodal-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: qspin 0.6s linear infinite;
+}
+
+@keyframes qspin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+    .qmodal {
+        grid-template-columns: 1fr;
+        max-height: 94vh;
+        border-radius: 18px 18px 0 0;
+        align-self: flex-end;
+    }
+
+    .qmodal-left {
+        padding: 24px 20px;
+        min-height: 180px;
+    }
+
+    .qmodal-left-title {
+        font-size: 22px;
+    }
+
+    .qmodal-left-features {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .qmodal-feature-item {
+        font-size: 12px;
+    }
+
+    .qmodal-icon-wrapper {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 16px;
+    }
+
+    .qmodal-icon-wrapper svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .qmodal-right {
+        padding: 20px 16px 18px;
+        max-height: 60vh;
+    }
+
+    .qmodal-form {
+        gap: 12px;
+    }
+
+    .qmodal-form-input,
+    .qmodal-form-textarea {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .qmodal-success-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-height: 700px) {
+    .qmodal-left {
+        padding: 20px;
+        min-height: 140px;
+    }
+
+    .qmodal-left-title {
+        font-size: 20px;
+    }
+
+    .qmodal-left-subtitle {
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+
+    .qmodal-left-features {
+        margin-bottom: 16px;
+    }
+
+    .qmodal-icon-wrapper {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 12px;
+    }
+
+    .qmodal-icon-wrapper svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .qmodal,
+    .qmodal-backdrop {
+        animation: none !important;
+        transition: none !important;
+    }
+}
