@@ -3,30 +3,34 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import './Hero.css';
 import TrustBar from './TrustBar';
+import Hospitality_Specialists from './../assets/Hospitality Specialists.png'
+import Farm_to_Table from './../assets/Farm to Table.png'
+import Artisan_Confectionery from './../assets/Artisan Confectionery.png'
+import Custom_Sourcing from './../assets/Custom Sourcing.png'
 
 // ─── Slides ───────────────────────────────────────────────────────────────────
 
 const slides = [
     {
-        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&q=85',
+        image: Hospitality_Specialists,
         eyebrow: 'Hospitality Specialists',
         title: 'Supplying the\nWorld\'s Finest\nHotels',
         desc: 'From toiletries to bed linen — everything your property needs, sourced globally.',
     },
     {
-        image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1400&q=85',
+        image: Farm_to_Table,
         eyebrow: 'Farm to Table',
         title: 'Premium Spices\n& Grains\nWorldwide',
         desc: 'Authentic flavours from the finest growing regions, delivered at scale.',
     },
     {
-        image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=1400&q=85',
+        image: Artisan_Confectionery,
         eyebrow: 'Artisan Confectionery',
         title: 'Fine Chocolates\nSourced from\nthe World\'s Best',
         desc: 'Premium cacao and handcrafted confections from Belgium, Switzerland, and beyond.',
     },
     {
-        image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1400&q=85',
+        image: Custom_Sourcing,
         eyebrow: 'Custom Sourcing',
         title: 'Your Vision,\nOur Global\nNetwork',
         desc: 'Tailored procurement solutions for businesses of every size, anywhere.',
