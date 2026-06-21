@@ -231,7 +231,7 @@ const Navbar = () => {
 
                     {/* RIGHT — Theme Switcher + CTA Button */}
                     <div className="flex items-center gap-2 sm:gap-3 shrink-0" style={{ zIndex: 9999, position: 'relative' }}>
-                        <ThemeSwitcher />
+                        {/* <ThemeSwitcher /> */}
                         {/* Animated CTA Button - Now defined inline */}
                         <motion.div
                             initial={{ opacity: 0 }}
