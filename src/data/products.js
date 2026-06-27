@@ -1,25 +1,244 @@
 import Hospitality_Specialists from '../assets/Hospitality Specialists.webp';
 import Farm_to_Table from '../assets/Farm to Table.webp';
 import Artisan_Confectionery from '../assets/Artisan Confectionery.webp';
-import Custom_Sourcing from '../assets/Custom Sourcing.webp';
-import Premium_Chocolates from '../assets/Premium Chocolates.webp';
-import Beverages from '../assets/Beverages.webp';
-import Rice_Grains from '../assets/Rice & Grains.webp';
+import Pet_Food_Products from '../assets/Pet_food_products.jpg';
+import Premium_Chocolates from '../assets/Chocolates&confectionery.webp';
+import Beverages from '../assets/Beverages.jpg';
+import Rice_Grains from '../assets/Rice&Grains.jpg';
+
+// Hotel Supplies
+import air_freshener_dispenser from '../assets/Products/Hotel Supplies/air_freshener_dispenser.png';
+import aroma_oil_diffuser from '../assets/Products/Hotel Supplies/aroma_oil_diffuser.png';
+import carpet_brush from '../assets/Products/Hotel Supplies/carpet_brush.png';
+import caution_banner from '../assets/Products/Hotel Supplies/caution_banner.png';
+import c_fold_tissue from '../assets/Products/Hotel Supplies/c_fold_tissue.png';
+import desk_accessories from '../assets/Products/Hotel Supplies/desk_accessories.png';
+import dettol_bottle_handwash from '../assets/Products/Hotel Supplies/dettol_bottle_handwash.png';
+import disposable_gloves from '../assets/Products/Hotel Supplies/disposable_gloves.png';
+import Filing_Tools from '../assets/Products/Hotel Supplies/Filing Tools.webp';
+import filing_tools from '../assets/Products/Hotel Supplies/filing_tools.png';
+import floor_brush from '../assets/Products/Hotel Supplies/Floor_brush.jpg';
+import garbage_bags from '../assets/Products/Hotel Supplies/garbage_bags.png';
+import hand_dryer from '../assets/Products/Hotel Supplies/hand_dryer.png';
+import harpic from '../assets/Products/Hotel Supplies/harpic.png';
+import hrt_roll from '../assets/Products/Hotel Supplies/hrt_roll.png';
+import jumbo_tissue_jrt from '../assets/Products/Hotel Supplies/jumbo_tissue_jrt.png';
+import kitchen_tissue from '../assets/Products/Hotel Supplies/kitchen_tissue.png';
+import liquid_handwash_dispenser from '../assets/Products/Hotel Supplies/liquid_handwash_dispenser.png';
+import m_fold_tissue from '../assets/Products/Hotel Supplies/m_fold_tissue.png';
+import paper_cups from '../assets/Products/Hotel Supplies/paper_cups.png';
+import paper_napkins from '../assets/Products/Hotel Supplies/paper_napkins.png';
+import paper_plates from '../assets/Products/Hotel Supplies/paper_plates.png';
+import vim_dishwash from '../assets/Products/Hotel Supplies/vim_dishwash.png';
+import Writing_Instruments from '../assets/Products/Hotel Supplies/Writing Instruments.webp';
+import writing_instruments from '../assets/Products/Hotel Supplies/writing_instruments.png';
+
+// Rice & Grains
+import Basmati_Rice from '../assets/Products/Rice & Grains/Basmati_Rice.webp';
+import Brown_Rice from '../assets/Products/Rice & Grains/Brown_Rice.webp';
+import Parboiled_Rice from '../assets/Products/Rice & Grains/Parboiled_Rice.webp';
+import Sona_Masoori from '../assets/Products/Rice & Grains/Sona_Masoori.jpg';
+import Specialty_Grains from '../assets/Products/Rice & Grains/wheat.png';
+
+// Spices & Seasonings
+import Black_Pepper from '../assets/Products/Spices & Seasoning/Black_Pepper.webp';
+import Cardamom from '../assets/Products/Spices & Seasoning/Cardamom.jpg';
+import Cloves_Cinnamon from '../assets/Products/Spices & Seasoning/Cloves&Cinnamon.jpg';
+import Spice_Blends from '../assets/Products/Spices & Seasoning/Spice_Blends.webp';
+import Turmeric from '../assets/Products/Spices & Seasoning/Turmeric.webp';
+
+// Beverages
+import Assam_Tea from '../assets/Products/Beverages/Assam_Tea.webp';
+import Darjeeling_Tea from '../assets/Products/Beverages/Darjeeling_Tea.jpg';
+import tata_tea from '../assets/Products/Beverages/tata_tea.webp';
+import Herbal_Infusions from '../assets/Products/Beverages/Herbal_Infusions.png';
+import Fanta from '../assets/Products/Beverages/fanta_fruit_twist_lifestyle.webp';
+import CocaCola from '../assets/Products/Beverages/CocaCola.jpg';
+import Monster from '../assets/Products/Beverages/Monster.JPG';
+import Samyang from '../assets/Products/Beverages/Samyang.JPG';
+import Nescafe from '../assets/Products/Beverages/NesCafe.webp';
+import Nescafe_Gold from '../assets/Products/Beverages/Nescafe_Gold.webp';
+import Peets_coffee from '../assets/Products/Beverages/Peets_coffee.webp';
+import Tropicana from '../assets/Products/Beverages/Tropicana.webp';
+
+// Chocolates
+import Aero from '../assets/Products/Premium Chocolates/Aero.jpg';
+import Fox from '../assets/Products/Premium Chocolates/Fox.JPG';
+import Harshey from '../assets/Products/Premium Chocolates/Harshey.JPG';
+import Lotus_Biscoff_Biscuits from '../assets/Products/Premium Chocolates/Lotus_Biscoff_Biscuits.jpg';
+import M_and_M from '../assets/Products/Premium Chocolates/M&M.webp';
+import Maltesers from '../assets/Products/Premium Chocolates/Maltesers.webp';
+import Slime_Licker from '../assets/Products/Premium Chocolates/Slime_Licker.JPG';
+import Snacks from '../assets/Products/Premium Chocolates/Snack.JPG';
+import Snack from '../assets/Products/Premium Chocolates/Snack.webp';
+import Twix from '../assets/Products/Premium Chocolates/Twix.webp';
+
+// Pet Food Products
+import Pedigree from '../assets/Products/Pet Food Products/Pedigree.webp';
+import Royal_Canin from '../assets/Products/Pet Food Products/Royal_Canin.jpg';
+import Whiskas from '../assets/Products/Pet Food Products/Whiskas.jpg';
+import Drools from '../assets/Products/Pet Food Products/Drools.webp';
+import MeO from '../assets/Products/Pet Food Products/MeO.jpg';
+import Himalaya_Pet from '../assets/Products/Pet Food Products/Himalaya_Pet_Care.jpg';
 
 export const products = [
     {
         icon: 'ti-building-store',
         bgClass: 'bg-dark-green',
         image: Hospitality_Specialists,
-        title: 'Hotel Supplies',
-        description: 'Complete amenities for hotels, resorts, and hospitality businesses.',
-        tagline: 'Everything a hospitality business needs, delivered with precision.',
+        title: 'Hotel & Hospitality Supplies',
+        description: 'End-to-end hospitality supplies—covering tissue, chemicals, housekeeping tools, disposables, and stationery.',
+        tagline: 'One trusted source for guest comfort, staff efficiency, and total operational readiness.',
         items: [
-            { name: 'Bathroom Amenities', desc: 'Shampoo, conditioner, soap bars, and toiletry kits in custom branding.', image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80' },
-            { name: 'Bed Linen', desc: 'High-thread-count cotton sheets, pillowcases, and duvet covers.', image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80' },
-            { name: 'Towels & Robes', desc: 'Fluffy bath towels, hand towels, and plush bathrobes for guests.', image: 'https://images.unsplash.com/photo-1600369672770-985fd30004eb?w=600&q=80' },
-            { name: 'Housekeeping Supplies', desc: 'Detergents, cleaning agents, and janitorial essentials in bulk.', image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&q=80' },
-            { name: 'In-Room Essentials', desc: 'Stationery kits, slippers, hair dryers, and welcome amenity sets.', image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80' },
+            // Tissue Products
+            {
+                name: 'C Fold Tissue',
+                group: 'Tissue',
+                desc: 'Interfolded C-fold paper towels ideal for high-traffic restrooms and commercial use.',
+                image: c_fold_tissue,
+            },
+            {
+                name: 'Kitchen Tissue',
+                group: 'Tissue',
+                desc: 'Heavy-duty absorbent paper rolls designed for kitchen spills, wiping, and food preparation.',
+                image: kitchen_tissue,
+            },
+            {
+                name: 'HRT Roll',
+                group: 'Tissue',
+                desc: 'High-quality jumbo roll tissue with superior softness and absorbency for restroom facilities.',
+                image: hrt_roll,
+            },
+            {
+                name: 'Jumbo Tissue (JRT)',
+                group: 'Tissue',
+                desc: 'Large-capacity jumbo roll tissue with extended sheet length for minimal maintenance.',
+                image: jumbo_tissue_jrt,
+            },
+            {
+                name: 'M Fold Tissue',
+                group: 'Tissue',
+                desc: 'Multi-fold paper towels with controlled dispensing, perfect for offices and public restrooms.',
+                image: m_fold_tissue,
+            },
+            {
+                name: 'Paper Napkins',
+                group: 'Tissue',
+                desc: 'Premium quality paper napkins offering superior softness, absorbency, and tear resistance.',
+                image: paper_napkins,
+            },
+
+            // Dispenser Products
+            {
+                name: 'Air Freshener Dispenser and Refill',
+                group: 'Dispenser',
+                desc: 'Automatic or manual air freshener systems with long-lasting refills for continuous fragrance.',
+                image: air_freshener_dispenser,
+            },
+            {
+                name: 'Liquid Handwash Dispenser',
+                group: 'Dispenser',
+                desc: 'Durable handwash dispensers with precise pump mechanisms for hygienic hand cleaning.',
+                image: liquid_handwash_dispenser,
+            },
+            {
+                name: 'Hand Dryer',
+                group: 'Dispenser',
+                desc: 'High-speed automatic hand dryers with efficient airflow for quick, hygienic drying.',
+                image: hand_dryer,
+            },
+            {
+                name: 'Aroma Oil Diffuser (Air Freshener)',
+                group: 'Dispenser',
+                desc: 'Ultrasonic aroma diffusers with adjustable settings for creating inviting ambient fragrances.',
+                image: aroma_oil_diffuser,
+            },
+
+            // Chemical Products
+            {
+                name: 'Dettol Bottle & Dettol Handwash',
+                group: 'Chemical',
+                desc: 'Trusted antiseptic handwash and liquid disinfectant for superior germ protection and hygiene.',
+                image: dettol_bottle_handwash,
+            },
+            {
+                name: 'Harpic',
+                group: 'Chemical',
+                desc: 'Powerful toilet bowl cleaner with stain and limescale removal for sparkling clean fixtures.',
+                image: harpic,
+            },
+            {
+                name: 'Vim Dishwash',
+                group: 'Chemical',
+                desc: 'Effective dishwashing liquid with superior grease-cutting action and gentle care for hands.',
+                image: vim_dishwash,
+            },
+
+            // Housekeeping Products
+            {
+                name: 'Garbage Bags',
+                group: 'Housekeeping',
+                desc: 'Durable and leak-proof garbage bags available in various sizes for efficient waste management.',
+                image: garbage_bags,
+            },
+            {
+                name: 'Carpet Brush',
+                group: 'Housekeeping',
+                desc: 'Sturdy carpet brushes with firm bristles for deep cleaning and maintaining carpet freshness.',
+                image: carpet_brush,
+            },
+            {
+                name: 'Floor Brush',
+                group: 'Housekeeping',
+                desc: 'Heavy-duty floor brush with durable bristles for efficient sweeping of all floor surfaces.',
+                image: floor_brush,
+            },
+
+            // Disposable Products
+            {
+                name: 'Disposable Gloves',
+                group: 'Disposable',
+                desc: 'High-quality disposable gloves offering excellent protection, comfort, and grip for hygiene tasks.',
+                image: disposable_gloves,
+            },
+            {
+                name: 'Paper Cups',
+                group: 'Disposable',
+                desc: 'Premium disposable paper cups suitable for hot and cold beverages in various capacities.',
+                image: paper_cups,
+            },
+            {
+                name: 'Paper Plates',
+                group: 'Disposable',
+                desc: 'Sturdy and eco-friendly disposable paper plates available in multiple sizes for every use.',
+                image: paper_plates,
+            },
+            {
+                name: 'Caution Banner',
+                group: 'Disposable',
+                desc: 'Highly visible caution banners and warning signage for safety and hazard identification.',
+                image: caution_banner,
+            },
+
+            // Office Stationery
+            {
+                name: 'Writing Instruments',
+                group: 'Office Stationery',
+                desc: 'Premium writing instruments including pens, pencils, and markers for professional use.',
+                image: writing_instruments,
+            },
+            {
+                name: 'Filing Tools',
+                group: 'Office Stationery',
+                desc: 'Organizational filing tools including folders, binders, and index tabs for document management.',
+                image: filing_tools,
+            },
+            {
+                name: 'Desk Accessories',
+                group: 'Office Stationery',
+                desc: 'Essential desk accessories including organizers, holders, and trays for workspace efficiency.',
+                image: desk_accessories,
+            },
         ],
         specs: {
             'Min. Order': 'Bulk / MOQ varies',
@@ -36,11 +255,31 @@ export const products = [
         description: 'Premium Basmati and non-Basmati rice sourced from finest farms.',
         tagline: 'Farm-fresh grains sourced directly from certified growing regions.',
         items: [
-            { name: 'Basmati Rice', desc: 'Long-grain, aromatic Basmati from the Punjab and Dehradun valleys.', image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80' },
-            { name: 'Brown Rice', desc: 'Whole-grain brown rice, minimally processed for maximum nutrition.', image: 'https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=600&q=80' },
-            { name: 'Sona Masoori', desc: 'Lightweight, low-starch rice ideal for everyday South Indian cooking.', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80' },
-            { name: 'Parboiled Rice', desc: 'Pre-cooked and dried for longer shelf life and faster cooking.', image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=600&q=80' },
-            { name: 'Specialty Grains', desc: 'Quinoa, millet, barley, and supergrains for health-forward menus.', image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&q=80' },
+            {
+                name: 'Basmati Rice',
+                desc: 'Long-grain, aromatic Basmati from the Punjab and Dehradun valleys.',
+                image: Basmati_Rice,
+            },
+            {
+                name: 'Brown Rice',
+                desc: 'Whole-grain brown rice, minimally processed for maximum nutrition.',
+                image: Brown_Rice,
+            },
+            {
+                name: 'Sona Masoori',
+                desc: 'Lightweight, low-starch rice ideal for everyday South Indian cooking.',
+                image: Sona_Masoori,
+            },
+            {
+                name: 'Parboiled Rice',
+                desc: 'Pre-cooked and dried for longer shelf life and faster cooking.',
+                image: Parboiled_Rice,
+            },
+            {
+                name: 'Specialty Grains',
+                desc: 'Quinoa, millet, barley, and supergrains for health-forward menus.',
+                image: Specialty_Grains,
+            },
         ],
         specs: {
             'Origin': 'Punjab / Dehradun',
@@ -57,11 +296,36 @@ export const products = [
         description: 'Pure aromatic spices from the finest growing regions worldwide.',
         tagline: 'Authentic flavours from soil to shelf — no fillers, no compromise.',
         items: [
-            { name: 'Cardamom', desc: 'Green and black cardamom pods sourced from Kerala\'s high-altitude farms.', image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80' },
-            { name: 'Black Pepper', desc: 'Bold Malabar pepper, whole and cracked, for professional kitchens.', image: 'https://images.unsplash.com/photo-1599909533731-1b1e28e14b41?w=600&q=80' },
-            { name: 'Turmeric', desc: 'High-curcumin whole finger and powder from Erode, Tamil Nadu.', image: 'https://images.unsplash.com/photo-1615485291234-9d694218aeb3?w=600&q=80' },
-            { name: 'Cloves & Cinnamon', desc: 'Whole cloves from Zanzibar and Ceylon cinnamon quills.', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80' },
-            { name: 'Spice Blends', desc: 'Custom masala mixes, curry powders, and proprietary seasoning blends.', image: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=600&q=80' },
+            {
+                name: 'Cardamom',
+                group: 'Whole Spices',
+                desc: 'Green and black cardamom pods sourced from Kerala\'s high-altitude farms.',
+                image: Cardamom,
+            },
+            {
+                name: 'Black Pepper',
+                group: 'Whole Spices',
+                desc: 'Bold Malabar pepper, whole and cracked, for professional kitchens.',
+                image: Black_Pepper,
+            },
+            {
+                name: 'Cloves & Cinnamon',
+                group: 'Whole Spices',
+                desc: 'Whole cloves from Zanzibar and Ceylon cinnamon quills.',
+                image: Cloves_Cinnamon,
+            },
+            {
+                name: 'Turmeric',
+                group: 'Powders & Blends',
+                desc: 'High-curcumin whole finger and powder from Erode, Tamil Nadu.',
+                image: Turmeric,
+            },
+            {
+                name: 'Spice Blends',
+                group: 'Powders & Blends',
+                desc: 'Custom masala mixes, curry powders, and proprietary seasoning blends.',
+                image: Spice_Blends,
+            },
         ],
         specs: {
             'Origin': 'Kerala / Tamil Nadu',
@@ -78,11 +342,78 @@ export const products = [
         description: 'High-quality tea, coffee and beverages for wholesale supply.',
         tagline: 'Premium pours for hotels, cafés, and large-scale distributors.',
         items: [
-            { name: 'Assam Tea', desc: 'Full-bodied CTC and orthodox loose-leaf teas from Assam estates.', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80' },
-            { name: 'Darjeeling Tea', desc: 'First and second flush Darjeeling for specialty tea programs.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
-            { name: 'Ground Coffee', desc: 'Single-origin and blended roasts, ground to your preferred profile.', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80' },
-            { name: 'Herbal Infusions', desc: 'Chamomile, peppermint, lemongrass, and custom wellness blends.', image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=600&q=80' },
-            { name: 'Juices & Concentrates', desc: 'Fruit concentrates and ready-to-dilute juices for hospitality use.', image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&q=80' },
+            {
+                name: 'Assam Tea',
+                group: 'Tea',
+                desc: 'Full-bodied CTC and orthodox loose-leaf teas from Assam estates.',
+                image: Assam_Tea,
+            },
+            {
+                name: 'Darjeeling Tea',
+                group: 'Tea',
+                desc: 'First and second flush Darjeeling for specialty tea programs.',
+                image: Darjeeling_Tea,
+            },
+            {
+                name: 'Elaichi Tea',
+                group: 'Tea',
+                desc: 'Aromatic cardamom-infused tea blend for a rich, spiced chai experience.',
+                image: tata_tea,
+            },
+            {
+                name: 'Herbal Infusions',
+                group: 'Tea',
+                desc: 'Chamomile, peppermint, lemongrass, and custom wellness blends.',
+                image: Herbal_Infusions,
+            },
+            {
+                name: 'Nescafe',
+                group: 'Coffee & Juices',
+                desc: 'Classic instant coffee with a smooth, balanced flavour — ideal for high-volume hotel service.',
+                image: Nescafe,
+            },
+            {
+                name: 'Nescafe Gold',
+                group: 'Coffee & Juices',
+                desc: 'Premium freeze-dried instant coffee with a richer, more refined taste for discerning guests.',
+                image: Nescafe_Gold,
+            },
+            {
+                name: 'Peets Coffee',
+                group: 'Coffee & Juices',
+                desc: 'Artisan-roasted whole bean and ground coffee from Peet\'s, crafted for specialty café programs.',
+                image: Peets_coffee,
+            },
+            {
+                name: 'Tropicana',
+                group: 'Coffee & Juices',
+                desc: 'Chilled and ambient Tropicana juices in popular fruit variants, ready for hotel minibars and F&B service.',
+                image: Tropicana,
+            },
+            {
+                name: 'Fanta',
+                group: 'Soft Drinks',
+                desc: 'Vibrant fruit-flavoured sparkling soft drink, available in assorted variants for hospitality and retail.',
+                image: Fanta,
+            },
+            {
+                name: 'Coca Cola',
+                group: 'Soft Drinks',
+                desc: 'Iconic carbonated cola available in cans and bottles, suited for bulk hotel and restaurant supply.',
+                image: CocaCola,
+            },
+            {
+                name: 'Monster',
+                group: 'Soft Drinks',
+                desc: 'High-energy carbonated drink with caffeine and B-vitamins, popular for minibars and convenience retail.',
+                image: Monster,
+            },
+            {
+                name: 'Samyang',
+                group: 'Soft Drinks',
+                desc: 'Bold Korean-inspired spicy flavoured drink — a trending novelty for modern hospitality menus.',
+                image: Samyang,
+            },
         ],
         specs: {
             'Origin': 'Assam / Darjeeling',
@@ -95,15 +426,64 @@ export const products = [
         icon: 'ti-candy',
         bgClass: 'bg-dark-purple',
         image: Premium_Chocolates,
-        title: 'Premium Chocolates',
+        title: 'Premium Chocolates & Confectionery',
         description: 'Luxury assorted chocolates, truffles, and confectionery products from premium international brands.',
         tagline: 'Indulgent confectionery from the world\'s finest chocolate makers.',
         items: [
-            { name: 'Dark Chocolate Truffles', desc: 'Single-origin 70%+ cacao truffles in assorted flavour profiles.', image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&q=80' },
-            { name: 'Milk Chocolate Assortments', desc: 'Creamy praline and ganache filled boxes for gifting.', image: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&q=80' },
-            { name: 'Gift Boxes', desc: 'Curated branded gift sets for corporate and festive occasions.', image: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=600&q=80' },
-            { name: 'Seasonal Collections', desc: 'Limited edition holiday and celebration chocolate ranges.', image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=600&q=80' },
-            { name: 'Couverture Blocks', desc: 'Bulk couverture chocolate for patisseries and chocolatiers.', image: 'https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&q=80' },
+            {
+                name: 'Aero',
+                group: 'Truffles & Bars',
+                desc: 'Light, bubbly milk chocolate bar with a uniquely aerated texture — a classic crowd-pleaser for gifting and hospitality.',
+                image: Aero,
+            },
+            {
+                name: "Fox's",
+                group: 'Truffles & Bars',
+                desc: 'Fox\'s assorted hard-boiled candy drops in classic fruity flavours, ideal for hotel candy bowls and gifting.',
+                image: Fox,
+            },
+            {
+                name: 'Hershey\'s',
+                group: 'Truffles & Bars',
+                desc: 'America\'s iconic milk chocolate bar with a rich, creamy taste — a globally recognised treat for retail and gifting.',
+                image: Harshey,
+            },
+            {
+                name: 'Lotus Biscoff Biscuits',
+                group: 'Truffles & Bars',
+                desc: 'Crisp caramelised speculoos biscuits with a distinctive spiced flavour, perfect for hotel F&B and in-room amenities.',
+                image: Lotus_Biscoff_Biscuits,
+            },
+            {
+                name: 'M&M',
+                group: 'Truffles & Bars',
+                desc: 'Candy-coated milk and peanut chocolate drops in vibrant colours — a popular choice for minibars and gift assortments.',
+                image: M_and_M,
+            },
+            {
+                name: 'Maltesers',
+                group: 'Truffles & Bars',
+                desc: 'Crunchy malted milk balls coated in smooth milk chocolate, light in texture and irresistible in taste.',
+                image: Maltesers,
+            },
+            {
+                name: 'Slime Licker',
+                group: 'Truffles & Bars',
+                desc: 'Trending sour rolling candy with a bold, tangy flavour — a novelty confectionery popular with younger audiences.',
+                image: Slime_Licker,
+            },
+            {
+                name: 'Snack',
+                group: 'Truffles & Bars',
+                desc: 'Assorted chocolate snack bars combining biscuit, caramel, and chocolate layers for on-the-go indulgence.',
+                image: Snack,
+            },
+            {
+                name: 'Twix',
+                group: 'Truffles & Bars',
+                desc: 'Classic caramel and biscuit chocolate bar with a satisfying crunch — a staple in hotel minibars and retail packs.',
+                image: Twix,
+            },
         ],
         specs: {
             'Cacao': '55%–85% options',
@@ -115,16 +495,47 @@ export const products = [
     {
         icon: 'ti-search',
         bgClass: 'bg-forest',
-        image: Custom_Sourcing,
-        title: 'Custom Sourcing',
-        description: 'Tailored sourcing for your specific product requirements globally.',
-        tagline: 'Your requirements, our network — anywhere in the world.',
+        image: Pet_Food_Products,
+        title: 'Pet Food Products',
+        description: 'Premium pet nutrition and care products from globally trusted brands for dogs and cats.',
+        tagline: 'Happy pets, trusted brands — sourced and supplied with care.',
         items: [
-            { name: 'Raw Material Procurement', desc: 'Agricultural and industrial raw materials sourced to spec.', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80' },
-            { name: 'Packaging Solutions', desc: 'Custom branded packaging for retail and wholesale products.', image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80' },
-            { name: 'Private Label Products', desc: 'White-label food and non-food products with your brand identity.', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80' },
-            { name: 'Global Import Facilitation', desc: 'Documentation, customs clearance, and end-to-end logistics.', image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80' },
-            { name: 'Quality Assurance', desc: 'Third-party lab testing and certification support for all sourced goods.', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80' },
+            {
+                name: 'Pedigree',
+                group: 'Dog Food',
+                desc: 'Complete and balanced dry and wet dog food in adult and puppy variants — a globally trusted brand for everyday nutrition.',
+                image: Pedigree,
+            },
+            {
+                name: 'Royal Canin',
+                group: 'Dog Food',
+                desc: 'Breed-specific and size-tailored dry dog food formulas by Royal Canin, trusted by vets worldwide.',
+                image: Royal_Canin,
+            },
+            {
+                name: 'Drools',
+                group: 'Dog Food',
+                desc: 'Indian-made premium dry and wet dog food with high protein content, available in puppy and adult variants.',
+                image: Drools,
+            },
+            {
+                name: 'Whiskas',
+                group: 'Cat Food',
+                desc: 'Complete nutrition wet and dry cat food in popular meat and fish variants from the Whiskas range.',
+                image: Whiskas,
+            },
+            {
+                name: 'Me-O',
+                group: 'Cat Food',
+                desc: 'Affordable, vet-recommended cat food in wet pouch and dry kibble formats for everyday feeding.',
+                image: MeO,
+            },
+            {
+                name: 'Himalaya Pet Care',
+                group: 'Health & Grooming',
+                desc: 'Natural pet wellness products including shampoos, supplements, and tick-protection solutions for dogs and cats.',
+                image: Himalaya_Pet,
+            },
         ],
         specs: {
             'Coverage': '25+ countries',

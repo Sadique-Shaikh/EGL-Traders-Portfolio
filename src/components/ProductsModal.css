@@ -21,15 +21,15 @@
     to   { opacity: 1; }
 }
 
-/* ── Modal shell — split grid ── */
+/* ── Modal shell — better grid ratio ── */
 .pmodal {
     background: #ffffff;
     border-radius: 20px;
     width: 100%;
-    max-width: 880px;
+    max-width: 960px;
     max-height: 88vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.8fr 1.2fr; /* 40% / 60% */
     overflow: hidden;
     box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
     animation: pPanelIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
@@ -47,13 +47,14 @@
     background: #0c1e12;
     display: flex;
     flex-direction: column;
-    height: 100%;          /* was: min-height: 500px; */
+    height: 100%;
     position: relative;
+    min-width: 0;
 }
 
 .pmodal-img-main {
     flex: 1;
-    min-height: 0;         /* add this line */
+    min-height: 0;
     position: relative;
     overflow: hidden;
 }
@@ -64,7 +65,6 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    /* Smooth crossfade on src swap */
     transition: opacity 0.32s ease, transform 0.32s ease;
     opacity: 1;
     transform: scale(1);
@@ -75,7 +75,7 @@
     transform: scale(1.04);
 }
 
-/* ── Gradient: makes image bottom legible ── */
+/* ── Gradient ── */
 .pmodal-img-gradient {
     position: absolute;
     inset: 0;
@@ -110,31 +110,29 @@
     background: rgba(8, 20, 12, 0.70);
     border: 1px solid rgba(200, 169, 110, 0.45);
     color: #c8a96e;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 999px;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
 
 .pmodal-category-pill .ti {
-    font-size: 13px;
+    font-size: 12px;
 }
 
-/* ── Image footer: item name + tagline over gradient ── */
+/* ── Image footer ── */
 .pmodal-img-footer {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 3;
-    padding: 16px 18px 14px;
-    /* Slide up on modal open */
+    padding: 14px 16px 12px;
     animation: pFooterSlide 0.48s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
-    /* Fade on item switch */
     transition: opacity 0.22s ease, transform 0.22s ease;
     opacity: 1;
     transform: translateY(0);
@@ -152,47 +150,120 @@
 
 .pmodal-img-item-name {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.25;
-    margin: 0 0 3px;
+    margin: 0 0 2px;
 }
 
 .pmodal-img-tagline-overlay {
-    font-size: 11px;
+    font-size: 10px;
     color: rgba(200, 169, 110, 0.82);
     font-style: italic;
     line-height: 1.4;
     margin: 0;
 }
 
-/* ── Thumbnail strip ── */
+/* ════════════════════════════════
+   SUB-CATEGORY TABS — now wrap!
+════════════════════════════════ */
+.pmodal-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.55);
+    flex-shrink: 0;
+    animation: pContentIn 0.35s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pmodal-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px 4px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.18s, border-color 0.18s;
+    flex-shrink: 0;
+    min-height: 30px;
+    min-width: 36px;
+}
+
+.pmodal-tab:hover:not(.pmodal-tab--active) {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.pmodal-tab--active {
+    color: #c8a96e;
+    border-bottom-color: #c8a96e;
+}
+
+.pmodal-tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 14px;
+    height: 14px;
+    padding: 0 3px;
+    border-radius: 999px;
+    font-size: 8px;
+    font-weight: 700;
+    background: rgba(200, 169, 110, 0.12);
+    color: rgba(200, 169, 110, 0.6);
+    transition: background 0.18s, color 0.18s;
+}
+
+.pmodal-tab--active .pmodal-tab-count {
+    background: rgba(200, 169, 110, 0.25);
+    color: #c8a96e;
+}
+
+/* ── Thumbnail strip (still scrollable) ── */
 .pmodal-thumbs {
     display: flex;
-    gap: 8px;
-    padding: 12px 14px;
+    gap: 6px;
+    padding: 8px 12px;
     background: rgba(0, 0, 0, 0.42);
     overflow-x: auto;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(200, 169, 110, 0.3) transparent;
     flex-shrink: 0;
     position: relative;
     z-index: 4;
+    mask-image: linear-gradient(to right, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 95%, transparent 100%);
 }
 
-.pmodal-thumbs::-webkit-scrollbar { display: none; }
+.pmodal-thumbs::-webkit-scrollbar {
+    height: 3px;
+    background: transparent;
+}
+.pmodal-thumbs::-webkit-scrollbar-thumb {
+    background: rgba(200, 169, 110, 0.3);
+    border-radius: 4px;
+}
 
 .pmodal-thumb {
     flex-shrink: 0;
-    width: 52px;
-    height: 46px;
-    border-radius: 8px;
+    width: 44px;
+    height: 38px;
+    border-radius: 6px;
     overflow: hidden;
     border: 2px solid transparent;
     padding: 0;
     background: none;
     cursor: pointer;
-    opacity: 0.45;
+    opacity: 0.4;
     transition: opacity 0.22s, border-color 0.22s, transform 0.22s, box-shadow 0.22s;
 }
 
@@ -206,14 +277,14 @@
 .pmodal-thumb--active {
     border-color: #c8a96e;
     opacity: 1;
-    transform: scale(1.1);
-    box-shadow: 0 0 0 1px rgba(200, 169, 110, 0.28);
+    transform: scale(1.08);
+    box-shadow: 0 0 0 1px rgba(200, 169, 110, 0.25);
 }
 
 .pmodal-thumb:hover:not(.pmodal-thumb--active) {
-    opacity: 0.78;
-    border-color: rgba(200, 169, 110, 0.4);
-    transform: scale(1.05);
+    opacity: 0.75;
+    border-color: rgba(200, 169, 110, 0.3);
+    transform: scale(1.04);
 }
 
 /* ════════════════════════════════
@@ -222,7 +293,7 @@
 .pmodal-right {
     display: flex;
     flex-direction: column;
-    padding: 26px 24px 22px;
+    padding: 24px 22px 20px;
     overflow-y: auto;
     max-height: 88vh;
     gap: 0;
@@ -238,8 +309,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    /* Staggered reveal on open */
+    margin-bottom: 8px;
     animation: pContentIn 0.4s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -249,16 +319,21 @@
 }
 
 .pmodal-eyebrow {
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.11em;
     text-transform: uppercase;
     color: #c8a96e;
 }
 
+.pmodal-eyebrow-sub {
+    color: rgba(200, 169, 110, 0.5);
+    font-weight: 500;
+}
+
 .pmodal-close {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     border: 1px solid #e0e0e0;
     background: #f5f5f5;
@@ -275,21 +350,18 @@
     background: #ffe8e8;
     border-color: #f5c0c0;
     color: #c0392b;
-    /* Spin the × on hover */
     transform: rotate(90deg);
 }
 
-/* ── Product name: fades + slides on item switch ── */
+/* ── Product name ── */
 .pmodal-name {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #0c1e12;
     margin: 0 0 4px;
     line-height: 1.2;
     font-family: 'Playfair Display', serif;
-    /* Open animation */
     animation: pContentIn 0.4s 0.14s cubic-bezier(0.22, 1, 0.36, 1) both;
-    /* Switch transition */
     transition: opacity 0.22s ease, transform 0.22s ease;
     opacity: 1;
     transform: translateY(0);
@@ -301,20 +373,20 @@
 }
 
 .pmodal-tagline {
-    font-size: 12px;
+    font-size: 11.5px;
     color: #c8a96e;
     font-weight: 500;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     font-style: italic;
     animation: pContentIn 0.4s 0.20s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ── Description: same fade on switch ── */
+/* ── Description ── */
 .pmodal-desc {
-    font-size: 13.5px;
+    font-size: 13px;
     color: #4a5e52;
-    line-height: 1.75;
-    margin: 0 0 18px;
+    line-height: 1.7;
+    margin: 0 0 16px;
     animation: pContentIn 0.4s 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
     transition: opacity 0.22s ease, transform 0.22s ease;
     opacity: 1;
@@ -329,34 +401,33 @@
 /* Sections */
 .pmodal-section {
     border-top: 1px solid #efefef;
-    padding-top: 14px;
-    margin-bottom: 14px;
+    padding-top: 12px;
+    margin-bottom: 12px;
 }
 
 .pmodal-section-label {
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #aaa;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
 }
 
-/* ── Specs grid: staggered entry ── */
+/* ── Specs grid ── */
 .pmodal-specs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 7px;
+    gap: 6px;
 }
 
 .pmodal-spec-card {
     background: #f6f9f6;
-    border-radius: 9px;
-    padding: 9px 12px;
+    border-radius: 8px;
+    padding: 8px 10px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    /* Start hidden; JS adds --visible after stagger delay */
+    gap: 1px;
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.28s ease, transform 0.28s ease, background 0.16s;
@@ -367,40 +438,37 @@
     transform: translateY(0);
 }
 
-.pmodal-spec-card:hover {
-    background: #edf5ee;
-}
+.pmodal-spec-card:hover { background: #edf5ee; }
 
 .pmodal-spec-key {
-    font-size: 10.5px;
+    font-size: 9.5px;
     color: #8a9e90;
 }
 
 .pmodal-spec-val {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: #0c1e12;
 }
 
-/* ── Related chips: staggered entry + tactile hover ── */
+/* ── Related chips ── */
 .pmodal-related {
     display: flex;
-    gap: 7px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
 .pmodal-related-chip {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     background: #f6f9f6;
     border: 1px solid #e4ece6;
-    border-radius: 8px;
-    padding: 5px 10px 5px 5px;
+    border-radius: 6px;
+    padding: 4px 8px 4px 4px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     color: #1a3322;
-    /* Start hidden; JS adds --visible after stagger delay */
     opacity: 0;
     transform: scale(0.88);
     transition: opacity 0.26s ease, transform 0.26s ease, border-color 0.18s, background 0.18s, box-shadow 0.18s;
@@ -412,9 +480,9 @@
 }
 
 .pmodal-related-chip img {
-    width: 28px;
-    height: 28px;
-    border-radius: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -422,7 +490,6 @@
 .pmodal-related-chip:hover {
     border-color: #c8a96e;
     background: #fdf9f2;
-    /* Lift on hover */
     transform: scale(1) translateY(-2px);
     box-shadow: 0 4px 12px rgba(200, 169, 110, 0.20);
 }
@@ -435,31 +502,29 @@
     background: #f0f7f2;
     border: 1px dashed #a8c8b0;
     border-radius: 10px;
-    padding: 12px 14px;
-    margin-bottom: 16px;
-    margin-top: 4px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    margin-top: 2px;
     animation: pContentIn 0.4s 0.44s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .pmodal-note .ti {
-    font-size: 15px;
+    font-size: 14px;
     color: #3d7a52;
     flex-shrink: 0;
     margin-top: 1px;
 }
 
 .pmodal-note p {
-    font-size: 12px;
+    font-size: 11.5px;
     color: #3d5e44;
     line-height: 1.6;
     margin: 0;
 }
 
-.pmodal-note strong {
-    color: #1a3322;
-}
+.pmodal-note strong { color: #1a3322; }
 
-/* ── CTA: pinned at bottom ── */
+/* ── CTA ── */
 .pmodal-cta {
     margin-top: auto;
     width: 100%;
@@ -467,8 +532,8 @@
     color: #ffffff;
     border: none;
     border-radius: 10px;
-    padding: 13px 18px;
-    font-size: 13px;
+    padding: 12px 18px;
+    font-size: 12.5px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -492,12 +557,13 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .pmodal {
         grid-template-columns: 1fr;
         max-height: 94vh;
         border-radius: 18px 18px 0 0;
         align-self: flex-end;
+        max-width: 100%;
     }
 
     .pmodal-left {
@@ -507,17 +573,243 @@
 
     .pmodal-right {
         max-height: none;
-        padding: 20px 18px 18px;
+        padding: 18px 16px 16px;
+        overflow-y: auto;
+    }
+
+    .pmodal-tabs {
+        padding: 6px 8px;
+        gap: 3px 4px;
+    }
+
+    .pmodal-tab {
+        padding: 3px 6px 3px;
+        font-size: 8px;
+        min-height: 24px;
+        min-width: 28px;
+    }
+
+    .pmodal-tab-count {
+        min-width: 12px;
+        height: 12px;
+        font-size: 7px;
+    }
+
+    .pmodal-thumbs {
+        padding: 6px 10px;
+        gap: 5px;
+        mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    }
+
+    .pmodal-thumb {
+        width: 36px;
+        height: 32px;
+        border-radius: 5px;
+    }
+
+    .pmodal-img-footer {
+        padding: 10px 12px 10px;
+    }
+
+    .pmodal-img-item-name {
+        font-size: 13px;
+    }
+
+    .pmodal-img-tagline-overlay {
+        font-size: 9px;
+    }
+
+    .pmodal-name {
+        font-size: 18px;
+    }
+
+    .pmodal-desc {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .pmodal-specs {
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+
+    .pmodal-spec-card {
+        padding: 6px 8px;
+    }
+
+    .pmodal-spec-val {
+        font-size: 11px;
+    }
+
+    .pmodal-related-chip {
+        font-size: 10px;
+        padding: 3px 6px 3px 3px;
+    }
+
+    .pmodal-related-chip img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .pmodal-section {
+        padding-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .pmodal-cta {
+        padding: 10px 14px;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    .pmodal-note {
+        padding: 8px 12px;
+        margin-bottom: 10px;
+    }
+
+    .pmodal-note p {
+        font-size: 10px;
+    }
+
+    .pmodal-header {
+        margin-bottom: 6px;
+    }
+
+    .pmodal-eyebrow {
+        font-size: 9px;
+    }
+
+    .pmodal-close {
+        width: 24px;
+        height: 24px;
+    }
+
+    .pmodal-close svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .pmodal-swipe-btn {
+        width: 28px;
+        height: 28px;
+        opacity: 0.4;
     }
 }
 
-/* ── Reduced motion: respect user preference ── */
+@media (max-width: 480px) {
+    .pmodal-left {
+        min-height: 180px;
+        max-height: 180px;
+    }
+
+    .pmodal-tab {
+        font-size: 7px;
+        padding: 2px 5px 2px;
+        min-height: 20px;
+        min-width: 24px;
+    }
+
+    .pmodal-tab-count {
+        min-width: 10px;
+        height: 10px;
+        font-size: 6px;
+    }
+
+    .pmodal-thumb {
+        width: 30px;
+        height: 26px;
+    }
+
+    .pmodal-name {
+        font-size: 16px;
+    }
+
+    .pmodal-desc {
+        font-size: 11px;
+    }
+
+    .pmodal-right {
+        padding: 14px 12px 14px;
+    }
+}
+
+/* ── Swipe indicators ── */
+.pmodal-swipe-indicators {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 5;
+    pointer-events: none;
+    padding: 0 10px;
+}
+
+.pmodal-swipe-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.2s ease;
+    opacity: 0;
+}
+
+.pmodal:hover .pmodal-swipe-btn { opacity: 0.6; }
+
+.pmodal-swipe-btn:hover {
+    opacity: 1 !important;
+    background: rgba(200, 151, 74, 0.8);
+    transform: scale(1.05);
+}
+
+.pmodal-swipe-btn:active { transform: scale(0.95); }
+
+@media (max-width: 768px) {
+    .pmodal-swipe-btn {
+        width: 28px;
+        height: 28px;
+        opacity: 0.4;
+    }
+}
+
+/* ── Desktop scroll hint ── */
+@media (min-width: 769px) {
+    .pmodal::before {
+        content: '←  →';
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        color: rgba(0, 0, 0, 0.25);
+        pointer-events: none;
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .pmodal:hover::before { opacity: 1; }
+}
+
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
     .pmodal,
     .pmodal-backdrop,
     .pmodal-img,
     .pmodal-img-footer,
     .pmodal-img-overlay,
+    .pmodal-tabs,
     .pmodal-header,
     .pmodal-name,
     .pmodal-tagline,
@@ -534,113 +826,5 @@
     .pmodal-related-chip {
         opacity: 1;
         transform: none;
-    }
-}
-
-
-/* ── Swipe indicators & navigation buttons ── */
-
-.pmodal-swipe-indicators {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    z-index: 5;
-    pointer-events: none;
-    padding: 0 12px;
-}
-
-.pmodal-swipe-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: all 0.2s ease;
-    opacity: 0;
-}
-
-.pmodal:hover .pmodal-swipe-btn {
-    opacity: 0.7;
-}
-
-.pmodal-swipe-btn:hover {
-    opacity: 1 !important;
-    background: rgba(200, 151, 74, 0.8);
-    transform: scale(1.05);
-}
-
-.pmodal-swipe-btn:active {
-    transform: scale(0.95);
-}
-
-/* Mobile-specific styles */
-@media (max-width: 640px) {
-    .pmodal-swipe-btn {
-        width: 32px;
-        height: 32px;
-        opacity: 0.5;
-    }
-    
-    /* Allow scrolling on mobile */
-    .pmodal-right {
-        -webkit-overflow-scrolling: touch;
-        overflow-y: auto !important;
-        max-height: 60vh;
-    }
-    
-    .pmodal {
-        max-height: 90vh;
-        overflow: hidden;
-    }
-    
-    /* Better touch feedback */
-    .pmodal-related-chip:active {
-        transform: scale(0.96);
-    }
-    
-    .pmodal-thumb:active {
-        transform: scale(0.95);
-    }
-    
-    /* Swipe hint animation */
-    @keyframes swipeHint {
-        0%, 100% { transform: translateX(0); opacity: 0.5; }
-        50% { transform: translateX(5px); opacity: 1; }
-    }
-    
-    .pmodal-swipe-btn {
-        animation: swipeHint 2s ease-in-out infinite;
-    }
-}
-
-/* Desktop keyboard navigation hint */
-@media (min-width: 641px) {
-    .pmodal::before {
-        content: '←  →';
-        position: absolute;
-        bottom: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 10px;
-        color: rgba(0, 0, 0, 0.3);
-        pointer-events: none;
-        z-index: 10;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .pmodal:hover::before {
-        opacity: 1;
     }
 }

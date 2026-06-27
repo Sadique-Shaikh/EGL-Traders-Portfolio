@@ -7,7 +7,7 @@ const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER;
 
 const ProductModal = ({ product, onClose }) => {
     // ✅ ALL HOOKS MUST BE CALLED FIRST, BEFORE ANY CONDITIONAL RETURNS
-    
+
     const [activeIndex, setActiveIndex] = useState(0);
     const modalContentRef = useRef(null);
 
@@ -28,11 +28,26 @@ const ProductModal = ({ product, onClose }) => {
     const touchEndX = useRef(0);
     const [isSwiping, setIsSwiping] = useState(false);
 
+    // ── NEW: active sub-category tab ──
+    const [activeTab, setActiveTab] = useState(null);
+
     // Timers ref to clean up on unmount
     const timers = useRef([]);
 
     // Find details AFTER hooks but BEFORE conditional returns
     const details = product ? products.find((p) => p.title === product?.title) : null;
+
+    // ── Derive tabs from items that have a `group` property ──
+    // Falls back gracefully: if no items have `group`, hasTabs = false
+    const tabs = details
+        ? [...new Set(details.items.filter((i) => i.group).map((i) => i.group))]
+        : [];
+    const hasTabs = tabs.length > 1;
+
+    // Items visible in the thumbnail strip for the current tab
+    const tabItems = hasTabs && activeTab
+        ? details.items.filter((i) => i.group === activeTab)
+        : details?.items ?? [];
 
     const clearTimers = () => {
         timers.current.forEach(clearTimeout);
@@ -57,13 +72,17 @@ const ProductModal = ({ product, onClose }) => {
     useEffect(() => {
         if (!product || !details || !details.items) return;
         clearTimers();
+
+        const firstTab = hasTabs ? tabs[0] : null;
+        setActiveTab(firstTab);
         setActiveIndex(0);
         setDisplayIndex(0);
         setImgSrc(details.items[0]?.image || '');
         setImgFading(false);
         setTextFading(false);
         triggerStagger();
-    }, [product, details, triggerStagger]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [product?.title]);
 
     // Switch item with crossfade + text swap
     const switchTo = useCallback((index) => {
@@ -86,6 +105,10 @@ const ProductModal = ({ product, onClose }) => {
             setDisplayIndex(index);
             setImgSrc(details.items[index]?.image || '');
 
+            // ── Sync tab to the newly active item's group ──
+            const newGroup = details.items[index]?.group;
+            if (hasTabs && newGroup) setActiveTab(newGroup);
+
             // 3. Fade back in
             setImgFading(false);
             setTextFading(false);
@@ -93,19 +116,39 @@ const ProductModal = ({ product, onClose }) => {
             // 4. Stagger secondary elements
             triggerStagger();
         }, 220);
-    }, [activeIndex, details, triggerStagger]);
+    }, [activeIndex, details, hasTabs, triggerStagger]);
 
-    // Next product
+    // ── Switch sub-category tab ──
+    const switchTab = useCallback((tab) => {
+        if (tab === activeTab || !details) return;
+        setActiveTab(tab);
+        // Jump to the first item in the new tab
+        const firstInTab = details.items.findIndex((i) => i.group === tab);
+        if (firstInTab !== -1 && firstInTab !== activeIndex) {
+            switchTo(firstInTab);
+        }
+    }, [activeTab, activeIndex, details, switchTo]);
+
+    // Next / prev within the current tab's items (wraps within tab)
     const nextProduct = useCallback(() => {
         if (!details || !details.items || details.items.length === 0) return;
-        switchTo(activeIndex + 1);
-    }, [activeIndex, switchTo, details]);
+        const pool = hasTabs && activeTab
+            ? details.items.map((item, i) => ({ item, i })).filter(({ item }) => item.group === activeTab)
+            : details.items.map((item, i) => ({ item, i }));
+        const pos = pool.findIndex(({ i }) => i === activeIndex);
+        const nextPos = (pos + 1) % pool.length;
+        switchTo(pool[nextPos].i);
+    }, [activeIndex, activeTab, hasTabs, details, switchTo]);
 
-    // Previous product
     const prevProduct = useCallback(() => {
         if (!details || !details.items || details.items.length === 0) return;
-        switchTo(activeIndex - 1);
-    }, [activeIndex, switchTo, details]);
+        const pool = hasTabs && activeTab
+            ? details.items.map((item, i) => ({ item, i })).filter(({ item }) => item.group === activeTab)
+            : details.items.map((item, i) => ({ item, i }));
+        const pos = pool.findIndex(({ i }) => i === activeIndex);
+        const prevPos = (pos - 1 + pool.length) % pool.length;
+        switchTo(pool[prevPos].i);
+    }, [activeIndex, activeTab, hasTabs, details, switchTo]);
 
     // Handle touch start for swipe
     const handleTouchStart = (e) => {
@@ -113,32 +156,17 @@ const ProductModal = ({ product, onClose }) => {
         setIsSwiping(true);
     };
 
-    // Handle touch move (optional - for visual feedback)
     const handleTouchMove = (e) => {
         if (!isSwiping) return;
-        const currentX = e.touches[0].clientX;
-        const diff = currentX - touchStartX.current;
     };
 
-    // Handle touch end for swipe
     const handleTouchEnd = (e) => {
-        if (!isSwiping) {
-            setIsSwiping(false);
-            return;
-        }
-
+        if (!isSwiping) { setIsSwiping(false); return; }
         touchEndX.current = e.changedTouches[0].clientX;
-        const swipeThreshold = 50;
         const diff = touchEndX.current - touchStartX.current;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                prevProduct();
-            } else {
-                nextProduct();
-            }
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) prevProduct(); else nextProduct();
         }
-
         setIsSwiping(false);
         touchStartX.current = 0;
         touchEndX.current = 0;
@@ -156,12 +184,10 @@ const ProductModal = ({ product, onClose }) => {
         };
     }, [product]);
 
-    // Keyboard events - only when modal is open and has data
+    // Keyboard events
     useEffect(() => {
         const handleKey = (e) => {
-            // Only handle keyboard events if product and details exist
             if (!product || !details || !details.items || details.items.length === 0) return;
-            
             if (e.key === 'Escape') onClose();
             if (e.key === 'ArrowLeft') prevProduct();
             if (e.key === 'ArrowRight') nextProduct();
@@ -172,8 +198,6 @@ const ProductModal = ({ product, onClose }) => {
 
     // ✅ CONDITIONAL RETURNS GO AFTER ALL HOOKS
     if (!product || !details) return null;
-    
-    // Don't render if no active item
     if (!details.items || !details.items[displayIndex]) return null;
 
     const activeItem = details.items[displayIndex];
@@ -228,6 +252,9 @@ const ProductModal = ({ product, onClose }) => {
                             src={imgSrc || activeItem.image}
                             alt={activeItem.name}
                             className={`pmodal-img${imgFading ? ' pmodal-img--fading' : ''}`}
+                            // ── Perf: tell browser this image matters ──
+                            fetchpriority="high"
+                            decoding="async"
                         />
 
                         <div className="pmodal-img-gradient" aria-hidden="true" />
@@ -245,18 +272,42 @@ const ProductModal = ({ product, onClose }) => {
                         </div>
                     </div>
 
+                    {/* ── Sub-category tabs (only rendered when groups exist) ── */}
+                    {hasTabs && (
+                        <div className="pmodal-tabs" role="tablist" aria-label="Product sub-categories">
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab}
+                                    role="tab"
+                                    aria-selected={tab === activeTab}
+                                    className={`pmodal-tab${tab === activeTab ? ' pmodal-tab--active' : ''}`}
+                                    onClick={() => switchTab(tab)}
+                                >
+                                    {tab}
+                                    <span className="pmodal-tab-count">
+                                        {details.items.filter((i) => i.group === tab).length}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* ── Thumbnail strip — filtered by active tab ── */}
                     <div className="pmodal-thumbs">
-                        {details.items.map((item, i) => (
-                            <button
-                                key={item.name}
-                                className={`pmodal-thumb${i === activeIndex ? ' pmodal-thumb--active' : ''}`}
-                                onClick={() => switchTo(i)}
-                                aria-label={item.name}
-                                aria-pressed={i === activeIndex}
-                            >
-                                <img src={item.image} alt={item.name} loading="lazy" />
-                            </button>
-                        ))}
+                        {tabItems.map((item) => {
+                            const origIndex = details.items.indexOf(item);
+                            return (
+                                <button
+                                    key={item.name}
+                                    className={`pmodal-thumb${origIndex === activeIndex ? ' pmodal-thumb--active' : ''}`}
+                                    onClick={() => switchTo(origIndex)}
+                                    aria-label={item.name}
+                                    aria-pressed={origIndex === activeIndex}
+                                >
+                                    <img src={item.image} alt={item.name} loading="lazy" decoding="async" />
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
 
@@ -264,7 +315,12 @@ const ProductModal = ({ product, onClose }) => {
                 <div className="pmodal-right">
 
                     <div className="pmodal-header">
-                        <span className="pmodal-eyebrow">{product.title}</span>
+                        <span className="pmodal-eyebrow">
+                            {product.title}
+                            {hasTabs && activeTab && (
+                                <span className="pmodal-eyebrow-sub"> · {activeTab}</span>
+                            )}
+                        </span>
                         <button className="pmodal-close" onClick={onClose} aria-label="Close modal">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -303,8 +359,8 @@ const ProductModal = ({ product, onClose }) => {
                     <div className="pmodal-section">
                         <p className="pmodal-section-label">Also in this category</p>
                         <div className="pmodal-related">
-                            {details.items
-                                .filter((_, i) => i !== activeIndex)
+                            {tabItems
+                                .filter((item) => details.items.indexOf(item) !== activeIndex)
                                 .map((item, i) => {
                                     const origIndex = details.items.indexOf(item);
                                     return (
@@ -314,7 +370,7 @@ const ProductModal = ({ product, onClose }) => {
                                             style={{ transitionDelay: chipsVisible ? `${i * 55}ms` : '0ms' }}
                                             onClick={() => switchTo(origIndex)}
                                         >
-                                            <img src={item.image} alt={item.name} loading="lazy" />
+                                            <img src={item.image} alt={item.name} loading="lazy" decoding="async" />
                                             <span>{item.name}</span>
                                         </button>
                                     );
