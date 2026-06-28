@@ -1,6 +1,6 @@
 import Hospitality_Specialists from '../assets/Hospitality Specialists.webp';
 import Farm_to_Table from '../assets/Farm to Table.webp';
-import Artisan_Confectionery from '../assets/Artisan Confectionery.webp';
+// import Artisan_Confectionery from '../assets/Artisan Confectionery.webp';
 import Pet_Food_Products from '../assets/Pet_food_products.jpg';
 import Premium_Chocolates from '../assets/Chocolates&confectionery.webp';
 import Beverages from '../assets/Beverages.jpg';
@@ -15,7 +15,7 @@ import c_fold_tissue from '../assets/Products/Hotel Supplies/c_fold_tissue.png';
 import desk_accessories from '../assets/Products/Hotel Supplies/desk_accessories.png';
 import dettol_bottle_handwash from '../assets/Products/Hotel Supplies/dettol_bottle_handwash.png';
 import disposable_gloves from '../assets/Products/Hotel Supplies/disposable_gloves.png';
-import Filing_Tools from '../assets/Products/Hotel Supplies/Filing Tools.webp';
+// import Filing_Tools from '../assets/Products/Hotel Supplies/Filing Tools.webp';
 import filing_tools from '../assets/Products/Hotel Supplies/filing_tools.png';
 import floor_brush from '../assets/Products/Hotel Supplies/Floor_brush.jpg';
 import garbage_bags from '../assets/Products/Hotel Supplies/garbage_bags.png';
@@ -30,7 +30,7 @@ import paper_cups from '../assets/Products/Hotel Supplies/paper_cups.png';
 import paper_napkins from '../assets/Products/Hotel Supplies/paper_napkins.png';
 import paper_plates from '../assets/Products/Hotel Supplies/paper_plates.png';
 import vim_dishwash from '../assets/Products/Hotel Supplies/vim_dishwash.png';
-import Writing_Instruments from '../assets/Products/Hotel Supplies/Writing Instruments.webp';
+// import Writing_Instruments from '../assets/Products/Hotel Supplies/Writing Instruments.webp';
 import writing_instruments from '../assets/Products/Hotel Supplies/writing_instruments.png';
 
 // Rice & Grains
@@ -69,7 +69,7 @@ import Lotus_Biscoff_Biscuits from '../assets/Products/Premium Chocolates/Lotus_
 import M_and_M from '../assets/Products/Premium Chocolates/M&M.webp';
 import Maltesers from '../assets/Products/Premium Chocolates/Maltesers.webp';
 import Slime_Licker from '../assets/Products/Premium Chocolates/Slime_Licker.JPG';
-import Snacks from '../assets/Products/Premium Chocolates/Snack.JPG';
+// import Snacks from '../assets/Products/Premium Chocolates/Snack.JPG';
 import Snack from '../assets/Products/Premium Chocolates/Snack.webp';
 import Twix from '../assets/Products/Premium Chocolates/Twix.webp';
 
