@@ -52,8 +52,8 @@ import tata_tea from '../assets/Products/Beverages/tata_tea.webp';
 import Herbal_Infusions from '../assets/Products/Beverages/Herbal_Infusions.png';
 import Fanta from '../assets/Products/Beverages/fanta_fruit_twist_lifestyle.webp';
 import CocaCola from '../assets/Products/Beverages/CocaCola.jpg';
-import Monster from '../assets/Products/Beverages/Monster.JPG';
-import Samyang from '../assets/Products/Beverages/Samyang.JPG';
+import Monster from '../assets/Products/Beverages/Monster.jpg';
+import Samyang from '../assets/Products/Beverages/Samyang.jpg';
 import Nescafe from '../assets/Products/Beverages/NesCafe.webp';
 import Nescafe_Gold from '../assets/Products/Beverages/Nescafe_Gold.webp';
 import Peets_coffee from '../assets/Products/Beverages/Peets_coffee.webp';
@@ -61,12 +61,12 @@ import Tropicana from '../assets/Products/Beverages/Tropicana.webp';
 
 // Chocolates
 import Aero from '../assets/Products/Premium_Chocolates/Aero.jpg';
-import Fox from '../assets/Products/Premium_Chocolates/Fox.JPG';
-import Harshey from '../assets/Products/Premium_Chocolates/Harshey.JPG';
+import Fox from '../assets/Products/Premium_Chocolates/Fox.jpg';
+import Harshey from '../assets/Products/Premium_Chocolates/Harshey.jpg';
 import Lotus_Biscoff_Biscuits from '../assets/Products/Premium_Chocolates/Lotus_Biscoff_Biscuits.jpg';
 import M_and_M from '../assets/Products/Premium_Chocolates/M_M.webp';
 import Maltesers from '../assets/Products/Premium_Chocolates/Maltesers.webp';
-import Slime_Licker from '../assets/Products/Premium_Chocolates/Slime_Licker.JPG';
+import Slime_Licker from '../assets/Products/Premium_Chocolates/Slime_Licker.jpg';
 import Snack from '../assets/Products/Premium_Chocolates/Snack.webp';
 import Twix from '../assets/Products/Premium_Chocolates/Twix.webp';
 
