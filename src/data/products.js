@@ -1,51 +1,51 @@
-import Hospitality_Specialists from '../assets/Hospitality Specialists.webp';
-import Farm_to_Table from '../assets/Farm to Table.webp';
-// import Artisan_Confectionery from '../assets/Artisan Confectionery.webp';
+import Hospitality_Specialists from '../assets/Hospitality_Specialists.webp';
+import Farm_to_Table from '../assets/Farm_to_Table.webp';
+import Artisan_Confectionery from '../assets/Artisan_Confectionery.webp';
 import Pet_Food_Products from '../assets/Pet_food_products.jpg';
-import Premium_Chocolates from '../assets/Chocolates&confectionery.webp';
+import Premium_Chocolates from '../assets/Chocolates_confectionery.webp';
 import Beverages from '../assets/Beverages.jpg';
-import Rice_Grains from '../assets/Rice&Grains.jpg';
+import Rice_Grains from '../assets/Rice_Grains.jpg';
 
 // Hotel Supplies
-import air_freshener_dispenser from '../assets/Products/Hotel Supplies/air_freshener_dispenser.png';
-import aroma_oil_diffuser from '../assets/Products/Hotel Supplies/aroma_oil_diffuser.png';
-import carpet_brush from '../assets/Products/Hotel Supplies/carpet_brush.png';
-import caution_banner from '../assets/Products/Hotel Supplies/caution_banner.png';
-import c_fold_tissue from '../assets/Products/Hotel Supplies/c_fold_tissue.png';
-import desk_accessories from '../assets/Products/Hotel Supplies/desk_accessories.png';
-import dettol_bottle_handwash from '../assets/Products/Hotel Supplies/dettol_bottle_handwash.png';
-import disposable_gloves from '../assets/Products/Hotel Supplies/disposable_gloves.png';
-// import Filing_Tools from '../assets/Products/Hotel Supplies/Filing Tools.webp';
-import filing_tools from '../assets/Products/Hotel Supplies/filing_tools.png';
-import floor_brush from '../assets/Products/Hotel Supplies/Floor_brush.jpg';
-import garbage_bags from '../assets/Products/Hotel Supplies/garbage_bags.png';
-import hand_dryer from '../assets/Products/Hotel Supplies/hand_dryer.png';
-import harpic from '../assets/Products/Hotel Supplies/harpic.png';
-import hrt_roll from '../assets/Products/Hotel Supplies/hrt_roll.png';
-import jumbo_tissue_jrt from '../assets/Products/Hotel Supplies/jumbo_tissue_jrt.png';
-import kitchen_tissue from '../assets/Products/Hotel Supplies/kitchen_tissue.png';
-import liquid_handwash_dispenser from '../assets/Products/Hotel Supplies/liquid_handwash_dispenser.png';
-import m_fold_tissue from '../assets/Products/Hotel Supplies/m_fold_tissue.png';
-import paper_cups from '../assets/Products/Hotel Supplies/paper_cups.png';
-import paper_napkins from '../assets/Products/Hotel Supplies/paper_napkins.png';
-import paper_plates from '../assets/Products/Hotel Supplies/paper_plates.png';
-import vim_dishwash from '../assets/Products/Hotel Supplies/vim_dishwash.png';
-// import Writing_Instruments from '../assets/Products/Hotel Supplies/Writing Instruments.webp';
-import writing_instruments from '../assets/Products/Hotel Supplies/writing_instruments.png';
+import air_freshener_dispenser from '../assets/Products/Hotel_Supplies/air_freshener_dispenser.png';
+import aroma_oil_diffuser from '../assets/Products/Hotel_Supplies/aroma_oil_diffuser.png';
+import carpet_brush from '../assets/Products/Hotel_Supplies/carpet_brush.png';
+import caution_banner from '../assets/Products/Hotel_Supplies/caution_banner.png';
+import c_fold_tissue from '../assets/Products/Hotel_Supplies/c_fold_tissue.png';
+import desk_accessories from '../assets/Products/Hotel_Supplies/desk_accessories.png';
+import dettol_bottle_handwash from '../assets/Products/Hotel_Supplies/dettol_bottle_handwash.png';
+import disposable_gloves from '../assets/Products/Hotel_Supplies/disposable_gloves.png';
+// import Filing_Tools from '../assets/Products/Hotel_Supplies/Filing_Tools.webp';
+import filing_tools from '../assets/Products/Hotel_Supplies/filing_tools.png';
+import floor_brush from '../assets/Products/Hotel_Supplies/Floor_brush.jpg';
+import garbage_bags from '../assets/Products/Hotel_Supplies/garbage_bags.png';
+import hand_dryer from '../assets/Products/Hotel_Supplies/hand_dryer.png';
+import harpic from '../assets/Products/Hotel_Supplies/harpic.png';
+import hrt_roll from '../assets/Products/Hotel_Supplies/hrt_roll.png';
+import jumbo_tissue_jrt from '../assets/Products/Hotel_Supplies/jumbo_tissue_jrt.png';
+import kitchen_tissue from '../assets/Products/Hotel_Supplies/kitchen_tissue.png';
+import liquid_handwash_dispenser from '../assets/Products/Hotel_Supplies/liquid_handwash_dispenser.png';
+import m_fold_tissue from '../assets/Products/Hotel_Supplies/m_fold_tissue.png';
+import paper_cups from '../assets/Products/Hotel_Supplies/paper_cups.png';
+import paper_napkins from '../assets/Products/Hotel_Supplies/paper_napkins.png';
+import paper_plates from '../assets/Products/Hotel_Supplies/paper_plates.png';
+import vim_dishwash from '../assets/Products/Hotel_Supplies/vim_dishwash.png';
+// import Writing_Instruments from '../assets/Products/Hotel_Supplies/Writing_Instruments.webp';
+import writing_instruments from '../assets/Products/Hotel_Supplies/writing_instruments.png';
 
 // Rice & Grains
-import Basmati_Rice from '../assets/Products/Rice & Grains/Basmati_Rice.webp';
-import Brown_Rice from '../assets/Products/Rice & Grains/Brown_Rice.webp';
-import Parboiled_Rice from '../assets/Products/Rice & Grains/Parboiled_Rice.webp';
-import Sona_Masoori from '../assets/Products/Rice & Grains/Sona_Masoori.jpg';
-import Specialty_Grains from '../assets/Products/Rice & Grains/wheat.png';
+import Basmati_Rice from '../assets/Products/Rice_Grains/Basmati_Rice.webp';
+import Brown_Rice from '../assets/Products/Rice_Grains/Brown_Rice.webp';
+import Parboiled_Rice from '../assets/Products/Rice_Grains/Parboiled_Rice.webp';
+import Sona_Masoori from '../assets/Products/Rice_Grains/Sona_Masoori.jpg';
+import Specialty_Grains from '../assets/Products/Rice_Grains/wheat.png';
 
 // Spices & Seasonings
-import Black_Pepper from '../assets/Products/Spices & Seasoning/Black_Pepper.webp';
-import Cardamom from '../assets/Products/Spices & Seasoning/Cardamom.jpg';
-import Cloves_Cinnamon from '../assets/Products/Spices & Seasoning/Cloves&Cinnamon.jpg';
-import Spice_Blends from '../assets/Products/Spices & Seasoning/Spice_Blends.webp';
-import Turmeric from '../assets/Products/Spices & Seasoning/Turmeric.webp';
+import Black_Pepper from '../assets/Products/Spices_Seasoning/Black_Pepper.webp';
+import Cardamom from '../assets/Products/Spices_Seasoning/Cardamom.jpg';
+import Cloves_Cinnamon from '../assets/Products/Spices_Seasoning/Cloves_Cinnamon.jpg';
+import Spice_Blends from '../assets/Products/Spices_Seasoning/Spice_Blends.webp';
+import Turmeric from '../assets/Products/Spices_Seasoning/Turmeric.webp';
 
 // Beverages
 import Assam_Tea from '../assets/Products/Beverages/Assam_Tea.webp';
@@ -62,25 +62,25 @@ import Peets_coffee from '../assets/Products/Beverages/Peets_coffee.webp';
 import Tropicana from '../assets/Products/Beverages/Tropicana.webp';
 
 // Chocolates
-import Aero from '../assets/Products/Premium Chocolates/Aero.jpg';
-import Fox from '../assets/Products/Premium Chocolates/Fox.JPG';
-import Harshey from '../assets/Products/Premium Chocolates/Harshey.JPG';
-import Lotus_Biscoff_Biscuits from '../assets/Products/Premium Chocolates/Lotus_Biscoff_Biscuits.jpg';
-import M_and_M from '../assets/Products/Premium Chocolates/M&M.webp';
-import Maltesers from '../assets/Products/Premium Chocolates/Maltesers.webp';
-import Slime_Licker from '../assets/Products/Premium Chocolates/Slime_Licker.JPG';
-// import Snacks from '../assets/Products/Premium Chocolates/Snack.JPG';
-import Snack from '../assets/Products/Premium Chocolates/Snack.webp';
-import Twix from '../assets/Products/Premium Chocolates/Twix.webp';
+import Aero from '../assets/Products/Premium_Chocolates/Aero.jpg';
+import Fox from '../assets/Products/Premium_Chocolates/Fox.JPG';
+import Harshey from '../assets/Products/Premium_Chocolates/Harshey.JPG';
+import Lotus_Biscoff_Biscuits from '../assets/Products/Premium_Chocolates/Lotus_Biscoff_Biscuits.jpg';
+import M_and_M from '../assets/Products/Premium_Chocolates/M_M.webp';
+import Maltesers from '../assets/Products/Premium_Chocolates/Maltesers.webp';
+import Slime_Licker from '../assets/Products/Premium_Chocolates/Slime_Licker.JPG';
+// import Snacks from '../assets/Products/Premium_Chocolates/Snack.JPG';
+import Snack from '../assets/Products/Premium_Chocolates/Snack.webp';
+import Twix from '../assets/Products/Premium_Chocolates/Twix.webp';
 
 
 // Pet Food Products
-import Pedigree from '../assets/Products/Pet Food Products/Pedigree.webp';
-import Royal_Canin from '../assets/Products/Pet Food Products/Royal_Canin.jpg';
-import Whiskas from '../assets/Products/Pet Food Products/Whiskas.jpg';
-import Drools from '../assets/Products/Pet Food Products/Drools.webp';
-import MeO from '../assets/Products/Pet Food Products/MeO.jpg';
-import Himalaya_Pet from '../assets/Products/Pet Food Products/Himalaya_Pet_Care.jpg';
+import Pedigree from '../assets/Products/Pet_Food_Products/Pedigree.webp';
+import Royal_Canin from '../assets/Products/Pet_Food_Products/Royal_Canin.jpg';
+import Whiskas from '../assets/Products/Pet_Food_Products/Whiskas.jpg';
+import Drools from '../assets/Products/Pet_Food_Products/Drools.webp';
+import MeO from '../assets/Products/Pet_Food_Products/MeO.jpg';
+import Himalaya_Pet from '../assets/Products/Pet_Food_Products/Himalaya_Pet_Care.jpg';
 
 export const products = [
     {

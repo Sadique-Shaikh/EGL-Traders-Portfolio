@@ -3,10 +3,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import './Hero.css';
 import TrustBar from './TrustBar';
-import Hospitality_Specialists from './../assets/Hospitality Specialists.webp'
-import Farm_to_Table from './../assets/Farm to Table.webp'
-import Artisan_Confectionery from './../assets/Artisan Confectionery.webp'
-import Custom_Sourcing from './../assets/Custom Sourcing.webp'
+import Hospitality_Specialists from './../assets/Hospitality_Specialists.webp'
+import Farm_to_Table from './../assets/Farm_to_Table.webp'
+import Artisan_Confectionery from './../assets/Artisan_Confectionery.webp'
+import Custom_Sourcing from './../assets/Custom_Sourcing.webp'
 
 // ─── Slides ───────────────────────────────────────────────────────────────────
 
