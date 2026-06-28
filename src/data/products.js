@@ -1,6 +1,6 @@
 import Hospitality_Specialists from '../assets/Hospitality_Specialists.webp';
 import Farm_to_Table from '../assets/Farm_to_Table.webp';
-import Artisan_Confectionery from '../assets/Artisan_Confectionery.webp';
+// import Artisan_Confectionery from '../assets/Artisan_Confectionery.webp';
 import Pet_Food_Products from '../assets/Pet_food_products.jpg';
 import Premium_Chocolates from '../assets/Chocolates_confectionery.webp';
 import Beverages from '../assets/Beverages.jpg';
