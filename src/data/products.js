@@ -73,6 +73,7 @@ import Snacks from '../assets/Products/Premium Chocolates/Snack.JPG';
 import Snack from '../assets/Products/Premium Chocolates/Snack.webp';
 import Twix from '../assets/Products/Premium Chocolates/Twix.webp';
 
+
 // Pet Food Products
 import Pedigree from '../assets/Products/Pet Food Products/Pedigree.webp';
 import Royal_Canin from '../assets/Products/Pet Food Products/Royal_Canin.jpg';
