@@ -15,7 +15,7 @@ import c_fold_tissue from '../assets/Products/Hotel_Supplies/c_fold_tissue.webp'
 import desk_accessories from '../assets/Products/Hotel_Supplies/desk_accessories.webp';
 import dettol_bottle_handwash from '../assets/Products/Hotel_Supplies/dettol_bottle_handwash.jpg';
 import disposable_gloves from '../assets/Products/Hotel_Supplies/disposable_gloves.webp';
-import filing_tools from '../assets/Products/Hotel_Supplies/filing_tools.webp';
+import filing_tools from '../assets/Products/Hotel_Supplies/Filing_Tools.webp';
 import floor_brush from '../assets/Products/Hotel_Supplies/Floor_Brush.jpg';
 import garbage_bags from '../assets/Products/Hotel_Supplies/garbage_bags.jpg';
 import hand_dryer from '../assets/Products/Hotel_Supplies/hand_dryer.webp';
@@ -29,7 +29,7 @@ import paper_cups from '../assets/Products/Hotel_Supplies/paper_cups.jpg';
 import paper_napkins from '../assets/Products/Hotel_Supplies/paper_napkins.jpg';
 import paper_plates from '../assets/Products/Hotel_Supplies/paper_plates.jpg';
 import vim_dishwash from '../assets/Products/Hotel_Supplies/vim_dishwash.jpg';
-import writing_instruments from '../assets/Products/Hotel_Supplies/writing_instruments.webp';
+import writing_instruments from '../assets/Products/Hotel_Supplies/Writing_Instruments.webp';
 
 // Rice & Grains
 import Basmati_Rice from '../assets/Products/Rice_Grains/Basmati_Rice.jpg';
