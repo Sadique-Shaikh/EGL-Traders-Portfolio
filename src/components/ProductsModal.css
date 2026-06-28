@@ -166,7 +166,7 @@
 }
 
 /* ════════════════════════════════
-   SUB-CATEGORY TABS — now wrap!
+   SUB-CATEGORY TABS — single row, horizontal scroll
 ════════════════════════════════ */
 .pmodal-tabs {
     display: flex;
@@ -566,9 +566,12 @@
         max-width: 100%;
     }
 
+    /* FIX: removed fixed max-height cap so the left panel can grow
+       to fit tabs + thumbs without crushing the image area.
+       min-height keeps a sane floor; .pmodal-img-main's own
+       min-height guarantees the image is always visible. */
     .pmodal-left {
         min-height: 240px;
-        max-height: 240px;
     }
 
     .pmodal-right {
@@ -577,12 +580,25 @@
         overflow-y: auto;
     }
 
+    /* FIX: tabs no longer wrap to multiple rows on mobile — they
+       scroll horizontally in a single row instead, so they can
+       never eat into the image's vertical space. */
     .pmodal-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
         padding: 6px 8px;
         gap: 3px 4px;
+        mask-image: linear-gradient(to right, black 92%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 92%, transparent 100%);
+    }
+
+    .pmodal-tabs::-webkit-scrollbar {
+        display: none;
     }
 
     .pmodal-tab {
+        flex-shrink: 0;
         padding: 3px 6px 3px;
         font-size: 8px;
         min-height: 24px;
@@ -695,12 +711,20 @@
         height: 28px;
         opacity: 0.4;
     }
+
+    /* FIX: guarantee the image area never collapses, even when
+       tabs/thumbs are present together on a category with many
+       sub-groups. This is the key fix for the missing image bug. */
+    .pmodal-img-main {
+        min-height: 120px;
+    }
 }
 
 @media (max-width: 480px) {
+    /* FIX: removed fixed max-height cap here too, for the same
+       reason as the 768px breakpoint above. */
     .pmodal-left {
         min-height: 180px;
-        max-height: 180px;
     }
 
     .pmodal-tab {
@@ -731,6 +755,11 @@
 
     .pmodal-right {
         padding: 14px 12px 14px;
+    }
+
+    /* FIX: slightly smaller floor at the narrowest breakpoint */
+    .pmodal-img-main {
+        min-height: 100px;
     }
 }
 
