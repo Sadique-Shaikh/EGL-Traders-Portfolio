@@ -2,7 +2,12 @@
 
 /* ── Backdrop ── */
 .pmodal-backdrop {
-    touch-action: none;
+    /* FIX: removed touch-action: none — it disabled touch scrolling
+       for the ENTIRE modal subtree on real phones (not visible in
+       desktop devtools emulation, which uses mouse drag). Background
+       scroll is already locked via JS (body/html overflow: hidden
+       in ProductModal.jsx), so this isn't needed and was the actual
+       cause of the WhatsApp button being unreachable on mobile. */
     position: fixed;
     inset: 0;
     z-index: 1000;
@@ -27,6 +32,7 @@
     border-radius: 20px;
     width: 100%;
     max-width: 960px;
+    height: 88vh;       /* FIX: fixed height (was only max-height) — stops modal resizing per product */
     max-height: 88vh;
     display: grid;
     grid-template-columns: 0.8fr 1.2fr; /* 40% / 60% */
@@ -48,6 +54,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 0; /* FIX: lets this grid item respect the fixed modal height instead of growing with content */
     position: relative;
     min-width: 0;
 }
@@ -55,6 +62,7 @@
 .pmodal-img-main {
     flex: 1;
     min-height: 0;
+    aspect-ratio: 4 / 3; /* FIX: locks shape so the modal never resizes between products */
     position: relative;
     overflow: hidden;
 }
@@ -175,6 +183,7 @@
     padding: 8px 10px;
     background: rgba(0, 0, 0, 0.55);
     flex-shrink: 0;
+    touch-action: pan-x; /* FIX: scrolls horizontally only, doesn't block page/modal vertical scroll */
     animation: pContentIn 0.35s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -235,6 +244,7 @@
     padding: 8px 12px;
     background: rgba(0, 0, 0, 0.42);
     overflow-x: auto;
+    touch-action: pan-x; /* FIX: scrolls horizontally only, doesn't block page/modal vertical scroll */
     scrollbar-width: thin;
     scrollbar-color: rgba(200, 169, 110, 0.3) transparent;
     flex-shrink: 0;
@@ -295,7 +305,11 @@
     flex-direction: column;
     padding: 24px 22px 20px;
     overflow-y: auto;
+    height: 100%;       /* FIX: fill the fixed modal height instead of letting content dictate it */
+    min-height: 0;
     max-height: 88vh;
+    touch-action: pan-y; /* FIX: explicitly allow vertical touch-scroll so the CTA stays reachable */
+    -webkit-overflow-scrolling: touch;
     gap: 0;
     scrollbar-width: thin;
     scrollbar-color: #c8a96e33 transparent;
@@ -560,6 +574,8 @@
 @media (max-width: 768px) {
     .pmodal {
         grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr; /* FIX: image row auto, content row fills remaining fixed space */
+        height: 94vh;   /* FIX: fixed height (was only max-height) — stops modal resizing per product */
         max-height: 94vh;
         border-radius: 18px 18px 0 0;
         align-self: flex-end;
@@ -576,8 +592,22 @@
 
     .pmodal-right {
         max-height: none;
+        min-height: 0; /* FIX: lets this row shrink so overflow-y:auto can actually scroll */
+        height: 100%;
         padding: 18px 16px 16px;
         overflow-y: auto;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin; /* FIX: keep a visible scroll affordance on mobile too */
+    }
+
+    .pmodal-right::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .pmodal-right::-webkit-scrollbar-thumb {
+        background: #c8a96e66;
+        border-radius: 4px;
     }
 
     /* FIX: tabs no longer wrap to multiple rows on mobile — they
